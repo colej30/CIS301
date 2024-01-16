@@ -1,0 +1,48 @@
+
+
+/////////////////////////
+
+You meet three inhabitants: Sarah, Bill and Mae.
+
+Sarah tells you that only a knave would say that Bill is a knave.
+Bill claims that it's false that Mae is a knave.
+Mae tells you, “Bill would tell you that I am a knave.”
+
+What types are Sarah, Bill, and Mae?
+
+How could we rewrite/simplify each statement?
+
+/////////////////////////
+
+Cheryl's birthday problem.
+
+Written for Singapore and Asian Schools Math Olympiad in 2015
+
+Albert and Bernard want to know when Cheryl's birthday is.
+Cheryl gives them 10 potential dates:
+
+May 15, May 16, May 19
+June 17, June 18
+July 14, July 16
+August 14, August 15, August 17
+
+Cheryl privately tells Albert her birthday month.
+    (May, June, July, or August)
+
+Cheryl privately tells Bernard her birthday day (number).
+    (14-19)
+
+
+Albert says: "I don't know when Cheryl's birthday is,
+    but I know Bernard doesn't know too."
+
+
+Bernard says: "At first I didn't know when Cheryl's
+    birthday is, but now I do."
+
+
+Albert says: "Then I also know when Cheryl's birthday is."
+
+
+
+When is Cheryl's birthday? .
