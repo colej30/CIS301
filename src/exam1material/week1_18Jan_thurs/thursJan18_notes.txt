@@ -179,15 +179,24 @@ I hear my alarm.
 /////////////////////////////////////////////////////////////////
 
 If I don’t hear my alarm, then I will be late for class.
+I'm not late for class.
 
---> Can you think of another way to phrase this promise?
-
---> What do we know if we AREN'T late?
+--> What can I conclude?
 
 
+
+if (condition) {
+    statement
+}
+
+--> what if we know statement is NOT executed?
 
 
 /////////////////////////////////////////////////////////////////
+
+More if/then logic in programming.
+
+
 
 if (num < 4 || x >= 10) {
 
@@ -265,7 +274,7 @@ Eve says, ”I am a knave or Fred is a knight.”
 
 What are Eve and Fred?
 
-(what does the "or" mean? INCLUSIVE)
+(what does the "or" mean?)
 
 
 
@@ -299,7 +308,6 @@ You don’t know which is which.
 
 You see both of them together.
 
-Another Tweedledee and Tweedledum (same rules).
 
 First twin: Today is Monday or Wednesday
 Second twin: Today is Monday or Sunday
@@ -325,7 +333,7 @@ The first one says: "Tweedledee owns the rattle.”
 
 The second one says: ”I'm Tweedledee!”
 
-Who gets the rattle?
+--> Who gets the rattle?
 
 
 
