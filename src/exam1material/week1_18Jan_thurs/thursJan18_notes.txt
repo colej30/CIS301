@@ -3,12 +3,14 @@ CIS 301. Logical Foundations of Programming.
 Julie Thornton.
 
 What is this class?
-- logical reasoning (basics, then puzzles)
+- logical reasoning (basics, puzzles)
+- writing formal statements (propositional and predicate logic)
 - proofs (why?)
 - reasoning about code
     - analyzing what we know
     - identifying equivalent programs
     - simplifying programs
+    - formally describing what programs do
 - basics of proving correctness of programs (why?)
 
 
@@ -50,7 +52,7 @@ Premise 2: Fred is wearing a red shirt.
 
 Conclusion: Fred doesn’t like pizza.
 
---> Is this a valid argument?
+--> Is this a valid argument? yes
 
 
 
@@ -66,23 +68,23 @@ I order fries or I order chips.
 "or" can be inclusive or exclusive
 
 
-- in English, how do we interpret "or"?
+- in English, how do we interpret "or"? (exclusive)
 
 
 
-- in programming?
+- in programming? inclusive
 
 
 
 
-"Or" in THIS class:
+"Or" in THIS class: inclusive
 
 
 
 Premise 1: I'll fold the laundry or I'll do the dishes.
 Premise 2: I don't fold the laundry.
 
---> What can I conclude?
+--> What can I conclude? I do the dishes
 
 
 
@@ -97,7 +99,7 @@ if (num < 4 || x >= 10) {
 
 
 Suppose we know "statement" is executed
---> What can we conclude?
+--> What can we conclude? x >= 10
 
 
 
@@ -116,7 +118,7 @@ if (num < 4 || x >= 10) {
 
 
 Suppose we know "statement" is executed
---> What can we conclude?
+--> What can we conclude? num is 3 (assuming ints)
 
 
 /////////////////////////////////////////////////////////////////
@@ -124,7 +126,7 @@ Suppose we know "statement" is executed
 What rule are we seeing with an ”or” statement,
 where we know that one of the statements is NOT true?
 
-
+the other side has to be true
 
 
 
@@ -135,7 +137,7 @@ Logical Arguments with ”IF/THEN” (aka "implies" -> )
 If it is raining, then I will get wet.
 It is raining.
 
---> What can I conclude?
+--> What can I conclude? I will get wet
 
 
 
@@ -148,7 +150,7 @@ and we know that the ”if” part is true?
 
     ...what can we always conclude?
 
-
+then part is true
 
 
 
@@ -159,8 +161,8 @@ I am late for class.
 
 --> What can I conclude?
 
-
-
+nothing (I might not have heard my alarm, or I might
+be late for other reasons)
 
 
 
@@ -169,7 +171,8 @@ I am late for class.
 If I don’t hear my alarm, then I will be late for class.
 I hear my alarm.
 
---> What can I conclude?
+--> What can I conclude? nothing
+(I might still be late for a different reason)
 
 
 
@@ -181,7 +184,7 @@ I hear my alarm.
 If I don’t hear my alarm, then I will be late for class.
 I'm not late for class.
 
---> What can I conclude?
+--> What can I conclude? you heard your alarm
 
 
 
@@ -190,6 +193,13 @@ if (condition) {
 }
 
 --> what if we know statement is NOT executed?
+
+condition must not have been true
+
+
+If p Then q
+
+If not q then not p
 
 
 /////////////////////////////////////////////////////////////////
@@ -205,6 +215,8 @@ if (num < 4 || x >= 10) {
 
 --> suppose y is 17 here. What do we know?
 
+nothing! condition might have been true, or y might have
+already been 17.
 
 
 /////////////////////////////////////////////////////////////////
@@ -217,7 +229,7 @@ if (num < 4 || x >= 10) {
 }
 
 --> suppose y is 17 here. Can we conclude anything now?
-
+num < 4 || x >= 10
 
 /////////////////////////////////////////////////////////////////
 
@@ -227,6 +239,10 @@ if (num < 4 || x >= 10) {
 }
 
 --> suppose y is NOT 17 here. What do we know?
+
+if statement condition is NOT true
+
+num >= 4 and x < 10
 
 
 /////////////////////////////////////////////////////////////////
@@ -247,8 +263,10 @@ Knights ALWAYS tell the truth, and knaves ALWAYS lie.
 
 Who can say, "I'm a knave"?
 
-Can a knight?
-Can a knave?
+Can a knight? would be a lie
+Can a knave? would be true, they have to lie
+
+no one can say that
 
 
 
@@ -263,6 +281,21 @@ Bob says, ”Neither Ava nor I are knaves.”
 
 What are Ava and Bob?
 
+Suppose Ava is a knight. Then Bob has to be a knave.
+    This works because Bob's statement would be a lie
+    (because he IS a knave).
+
+Suppose instead that Ava is a knave. Then Bob has to be a knight.
+    Bob's statement would be a lie (since Ava IS a knave), so
+    this doesn't work.
+
+Solution: Ava - knight, Bob - knave
+
+
+Neither x nor y --> not x and not y
+not(x or y)
+
+
 
 
 
@@ -274,7 +307,15 @@ Eve says, ”I am a knave or Fred is a knight.”
 
 What are Eve and Fred?
 
-(what does the "or" mean?)
+(what does the "or" mean?) INCLUSIVE
+
+Suppose Eve is a knight. For her statement to be true overall
+   Fred must be a knight.
+
+Suppose instead Eve is a knave. That makes her OR statement true,
+    which doesn't work.
+
+   They are both knights.
 
 
 
@@ -291,6 +332,14 @@ Lion says: ”Yesterday was one of my lying days.”
 Unicorn says: ”Yesterday was one of my lying days, too.”
 
 What day is it?
+
+    Sunday? NO! Yesterday was not Lion's lying day, and
+        Lion should be telling truth.
+    Monday? NO! Would be a lie for Unicorn, who should be telling
+        truth.
+    Tuesday? NO! Would be true for Lion, who should be lying.
+        In a similar way, Wed/Fri/Sat don't work.
+    Thursday? YES!
 
 
 
@@ -314,9 +363,16 @@ Second twin: Today is Monday or Sunday
 
 What day of the week is it?
 
-(what kind of OR?)
+(what kind of OR?) inclusive
 
+Mon: NO! Both statements would be true, one should lie and one
+    should tell truth.
+Tues/Thurs/Fri/Sat: NO! Both statements would be a lie,
+    but one should be true.
+Wed: YES, works out.
+Sun: NO! Both statements would need to be true.
 
+It is Wednesday.
 
 
 /////////////////////////////////////////////////////////////////
@@ -336,7 +392,19 @@ The second one says: ”I'm Tweedledee!”
 --> Who gets the rattle?
 
 
+Suppose first twin is telling the truth. Then Tweedlede owns
+    the rattle. Then second twin is lying, so second twin is
+    Tweedledum. Means first twin is Tweedledee, and
+    first twin owns rattle.
 
+Suppose instead first twin is lying. Then Tweedledum own rattle
+    and second twin is telling the truth and really is Tweedledee.
+    The rattle belongs to the first twin (Tweedledum).
+
+
+In both cases, first twin owns rattle.
+
+(we CAN'T conclude who is who)
 
 /////////////////////////////////////////////////////////////////
 
