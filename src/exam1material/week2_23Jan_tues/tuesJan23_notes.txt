@@ -1,6 +1,27 @@
+HW 1 due tonight
 
+HW 2 will be posted after class (due Tuesday, January 30)
 
 /////////////////////////
+
+- where to find examples from class
+
+- how to clone lecture notes repo
+
+- weekly review quizzes
+
+- what to do before each class
+
+////////////////////////////////
+
+Today:
+
+- more logic puzzles
+- truth tables
+- logic gates and circuits
+- parse trees
+
+///////////////////////////////
 
 You meet three inhabitants: Sarah, Bill and Mae.
 
@@ -46,3 +67,277 @@ Albert says: "Then I also know when Cheryl's birthday is."
 
 
 When is Cheryl's birthday? .
+
+
+///////////////////////////////////
+
+Start truth tables and logic gates.
+
+    have boolean variables
+    want to express statements like: p AND (q OR r)
+
+Variables can be true or false
+
+Basic operations:
+
+∧ - and (can use a caret ^ )
+∨ - or (inclusive or) (can use a capital V)
+¬ - not (can use ! or ~ instead)
+→ - implies (can use ->)
+
+
+Basic logic gates (draw on board)
+
+gates still used to design circuits
+
+why do we care about equivalent circuits
+    (especially if one uses fewer gates)?
+
+what about programming?
+
+///////////////////////////////////////////////////
+
+Fill in basic operations:
+
+
+AND:
+
+p q | p ∧ q
+------------
+T T |
+T F |
+F T |
+F F |
+
+
+OR:
+
+p q | p ∨ q
+------------
+T T |
+T F |
+F T |
+F F |
+
+
+NOT:
+
+p | ¬p
+-------
+T |
+F |
+
+////////////////////////////////////////////////
+
+IMPLIES operator →
+
+"If I have a test, then I will study"
+
+p: I have a test
+q: I will study
+
+p → q
+
+It is false if we have BROKEN A PROMISE.
+Otherwise we have not.
+
+p q | p → q
+------------
+T T |
+T F |
+F T |
+F F |
+
+How does the implies operator relate to programming?
+
+//////////////////////////////////////////
+
+Design circuits for:
+
+¬(p ∨ q)       (p NOR q)
+
+¬(p ∧ (q ∨ r))
+
+p XOR q (with just the gates we've seen, not a specific XOR gate)
+
+/////////////////////////////////////
+
+How would we evaluate the output of these circuits with
+different inputs?
+
+Graphically build circuits:
+
+https://logic.ly/demo/
+
+/////////////////////////////////////
+
+--> how to add an image to GitHub repo?
+
+/////////////////////////////////////
+
+Compound truth tables.
+
+
+Consider ¬p ∧ q ∨ r.
+
+--> what operation do we do first?
+
+
+
+Order of operations
+
+In math? 3 - 2 + 4 - 2 * 8
+
+
+
+For logic statements:
+
+From highest (happens first) to lowest (happens last) precedence:
+    (), ¬, ∧, ∨, →
+
+
+
+
+Given this statement:
+
+    ¬p ∧ q ∨ r
+
+Add () to show the order of operations.
+
+
+Evaluate the above statement using these
+variable assignments:
+
+p is T
+q is F
+r is F
+
+
+
+////////////////////////////////////////////////
+
+Order of operations
+    ¬ evaluates right to left
+        ¬¬p is equivalent to....
+
+    ∧ and ∨ evaluate left to right
+        p ∧ q ∧ r is equivalent to....
+        p ∨ q ∨ r is equivalent to....
+
+    → evaluates right to left
+        p → q → r is equivalent to....
+
+
+
+
+
+//////////////////////////////////////////
+
+Top-level operator (what happens LAST?)
+
+
+¬p ∧ q ∨ r
+
+
+top-level:
+
+How is this similar to a circuit?
+
+
+///////////////////////////////
+
+p ∧ q ∨ r ∧ p
+
+rewrite with ():
+
+top-level operator?
+
+
+
+
+//////////////////////////////
+
+p ∧ q ∧ r ∧ s
+
+rewrite with ():
+
+
+
+top-level operator?
+
+////////////////////////////////////////////////////
+
+Classifying truth tables.
+
+Contingent, contradictory, tautology
+
+
+Definitions/examples
+
+contingent - the overall statements is true for
+    some truth assignments and false for others
+
+Example?
+
+
+
+contradictory - for all possible truth assignments,
+    the overall statement is false
+
+Example?
+
+
+
+tautology - for all possible truth assignments,
+    the overall statement is true
+
+Example?
+
+
+////////////////////////////////////////
+
+Write a truth table for:
+
+p ∨ q → p
+
+            *
+p q | p ∨ q → p
+------------------
+T T |   T   T
+T F |   T   T
+F T |   T   F
+F F |   F   T
+
+Contingent
+
+--> need to evaluate statement on ALL possible truth assignments
+
+--> how many truth assignments are there?
+
+--> how would we classify this truth table?
+
+
+/////////////////////////////////////////
+
+complete truth table in truth.logika
+
+////////////////////////////////////////
+
+/////////////////////////////////////////
+
+parse trees
+
+--> what are they?
+
+--> draw one for (p ∧ q) → ¬r
+
+
+--> how do they relate to programming?
+
+--> what is the "top-level operator" here?
+
+////////////////////////////////////////
+
+Next time:
+
+- begin propositional logic

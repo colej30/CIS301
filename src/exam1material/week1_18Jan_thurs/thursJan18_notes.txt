@@ -419,4 +419,4 @@ Homework 1: due Tuesday, January 23
         (what we did today)
     - second page is logic puzzles
 
-Next: finish logic puzzles, begin truth tables
+Next: finish logic puzzles, start truth tables
