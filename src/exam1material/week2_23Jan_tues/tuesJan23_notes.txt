@@ -29,9 +29,10 @@ Sarah tells you that only a knave would say that Bill is a knave.
 Bill claims that it's false that Mae is a knave.
 Mae tells you, “Bill would tell you that I am a knave.”
 
+How could we rewrite/simplify each statement?
+
 What types are Sarah, Bill, and Mae?
 
-How could we rewrite/simplify each statement?
 
 /////////////////////////
 
@@ -57,10 +58,8 @@ Cheryl privately tells Bernard her birthday day (number).
 Albert says: "I don't know when Cheryl's birthday is,
     but I know Bernard doesn't know too."
 
-
 Bernard says: "At first I didn't know when Cheryl's
     birthday is, but now I do."
-
 
 Albert says: "Then I also know when Cheryl's birthday is."
 
@@ -300,15 +299,7 @@ Write a truth table for:
 
 p ∨ q → p
 
-            *
-p q | p ∨ q → p
-------------------
-T T |   T   T
-T F |   T   T
-F T |   T   F
-F F |   F   T
 
-Contingent
 
 --> need to evaluate statement on ALL possible truth assignments
 
@@ -322,8 +313,6 @@ Contingent
 complete truth table in truth.logika
 
 ////////////////////////////////////////
-
-/////////////////////////////////////////
 
 parse trees
 
