@@ -1,6 +1,7 @@
-HW 1 due tonight
+HW 1 can be turned in today for 10% off
 
-HW 2 will be posted after class (due Tuesday, January 30)
+HW 2 due Tuesday, January 31
+
 
 /////////////////////////
 
@@ -8,67 +9,18 @@ HW 2 will be posted after class (due Tuesday, January 30)
 
 - how to clone lecture notes repo
 
-- weekly review quizzes
-
-- what to do before each class
-
 ////////////////////////////////
 
 Today:
 
-- more logic puzzles
 - truth tables
+- order of operations
 - logic gates and circuits
 - parse trees
+- satisfiability
+- logical equivalence
 
 ///////////////////////////////
-
-You meet three inhabitants: Sarah, Bill and Mae.
-
-Sarah tells you that only a knave would say that Bill is a knave.
-Bill claims that it's false that Mae is a knave.
-Mae tells you, “Bill would tell you that I am a knave.”
-
-How could we rewrite/simplify each statement?
-
-What types are Sarah, Bill, and Mae?
-
-
-/////////////////////////
-
-Cheryl's birthday problem.
-
-Written for Singapore and Asian Schools Math Olympiad in 2015
-
-Albert and Bernard want to know when Cheryl's birthday is.
-Cheryl gives them 10 potential dates:
-
-May 15, May 16, May 19
-June 17, June 18
-July 14, July 16
-August 14, August 15, August 17
-
-Cheryl privately tells Albert her birthday month.
-    (May, June, July, or August)
-
-Cheryl privately tells Bernard her birthday day (number).
-    (14-19)
-
-
-Albert says: "I don't know when Cheryl's birthday is,
-    but I know Bernard doesn't know too."
-
-Bernard says: "At first I didn't know when Cheryl's
-    birthday is, but now I do."
-
-Albert says: "Then I also know when Cheryl's birthday is."
-
-
-
-When is Cheryl's birthday? .
-
-
-///////////////////////////////////
 
 Start truth tables and logic gates.
 
@@ -86,13 +38,6 @@ Basic operations:
 
 
 Basic logic gates (draw on board)
-
-gates still used to design circuits
-
-why do we care about equivalent circuits
-    (especially if one uses fewer gates)?
-
-what about programming?
 
 ///////////////////////////////////////////////////
 
@@ -151,22 +96,15 @@ How does the implies operator relate to programming?
 
 //////////////////////////////////////////
 
-Design circuits for:
+Design circuit for:
 
 ¬(p ∨ q)       (p NOR q)
 
-¬(p ∧ (q ∨ r))
-
-p XOR q (with just the gates we've seen, not a specific XOR gate)
 
 /////////////////////////////////////
 
-How would we evaluate the output of these circuits with
+How would we evaluate the output of this circuit with
 different inputs?
-
-Graphically build circuits:
-
-https://logic.ly/demo/
 
 /////////////////////////////////////
 
@@ -181,15 +119,6 @@ Consider ¬p ∧ q ∨ r.
 
 --> what operation do we do first?
 
-
-
-Order of operations
-
-In math? 3 - 2 + 4 - 2 * 8
-
-
-
-For logic statements:
 
 From highest (happens first) to lowest (happens last) precedence:
     (), ¬, ∧, ∨, →
@@ -235,15 +164,7 @@ Order of operations
 Top-level operator (what happens LAST?)
 
 
-¬p ∧ q ∨ r
 
-
-top-level:
-
-How is this similar to a circuit?
-
-
-///////////////////////////////
 
 p ∧ q ∨ r ∧ p
 
@@ -253,18 +174,10 @@ top-level operator?
 
 
 
-
-//////////////////////////////
-
-p ∧ q ∧ r ∧ s
-
-rewrite with ():
+How is this similar to a circuit?
 
 
-
-top-level operator?
-
-////////////////////////////////////////////////////
+///////////////////////////////
 
 Classifying truth tables.
 
@@ -300,10 +213,17 @@ Write a truth table for:
 p ∨ q → p
 
 
+----------------
+p q | p ∨ q → p
+----------------
+T T |
+T F |
+F T |
+F F |
+----------------
 
---> need to evaluate statement on ALL possible truth assignments
 
---> how many truth assignments are there?
+--> how would we mark the top-level operator?
 
 --> how would we classify this truth table?
 
@@ -314,7 +234,33 @@ complete truth table in truth.logika
 
 ////////////////////////////////////////
 
-parse trees
+Satisfiability.
+
+- definition: a statement is satisfiable if there is at least
+one truth assignment that makes the statement true
+
+
+- what kind of statement is satisfiable? what kind is not?
+
+
+- is this satisfiable? How would we show it?
+
+        (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
+
+
+--> how would we show something was NOT satisfiable?
+
+/////////////////////////////////////////
+
+Logical equivalence.
+
+--> how to show two statements ARE equivalent?
+
+--> how to show two statements are NOT equivalent?
+
+////////////////////////////////////////
+
+Parse trees
 
 --> what are they?
 
@@ -329,4 +275,6 @@ parse trees
 
 Next time:
 
-- begin propositional logic
+- DeMorgan's laws
+- Equivalent statements
+- Propositional logic translations
