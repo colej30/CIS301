@@ -1,0 +1,42 @@
+//show DeMorgan's law
+
+//!(p ^ q) equivalent to !p V !q
+
+/*
+
+      *
+------------------
+p q | !(p ^ q)
+------------------
+T T | F   T
+T F | T   F
+F T | T   F
+F F | T   F
+-----------------
+
+Contingent
+
+- T: [T F] [F T] [F F]
+- F: [T T]
+
+*/
+
+         *
+------------------
+p q | !p V !q
+------------------
+T T | F  F F
+T F | F  T T
+F T | T  T F
+F F | T  T T
+-----------------
+
+Contingent
+
+- T: [T F] [F T] [F F]
+- F: [T T]
+
+/*
+The two statements are logically equivalent because they
+have the same ouput for every truth assignment.
+*/

@@ -48,28 +48,28 @@ AND:
 
 p q | p ∧ q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |   T
+T F |   F
+F T |   F
+F F |   F
 
 
 OR:
 
 p q | p ∨ q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |   T
+T F |   T
+F T |   T
+F F |   F
 
 
 NOT:
 
 p | ¬p
 -------
-T |
-F |
+T | F
+F | T
 
 ////////////////////////////////////////////////
 
@@ -83,14 +83,14 @@ q: I will study
 p → q
 
 It is false if we have BROKEN A PROMISE.
-Otherwise we have not.
+Otherwise it is true.
 
 p q | p → q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |   T
+T F |   F
+F T |   T
+F F |   T
 
 How does the implies operator relate to programming?
 
@@ -98,8 +98,16 @@ How does the implies operator relate to programming?
 
 Design circuit for:
 
-¬(p ∨ q)       (p NOR q)
+p AND NOT q
 
+p XOR q (using just AND, OR, NOT gates)
+
+exclusive or
+
+should be true when exactly one input is true
+otherwise false
+
+(p OR q) AND NOT(p AND q)
 
 /////////////////////////////////////
 
@@ -115,9 +123,11 @@ different inputs?
 Compound truth tables.
 
 
-Consider ¬p ∧ q ∨ r.
+Consider ¬p ∨ q ∧ r.
 
 --> what operation do we do first?
+
+(), exponents, mult/div, add/sub
 
 
 From highest (happens first) to lowest (happens last) precedence:
@@ -128,7 +138,7 @@ From highest (happens first) to lowest (happens last) precedence:
 
 Given this statement:
 
-    ¬p ∧ q ∨ r
+    ((¬p) ∨ (q ∧ r))
 
 Add () to show the order of operations.
 
@@ -137,23 +147,30 @@ Evaluate the above statement using these
 variable assignments:
 
 p is T
-q is F
+q is T
 r is F
 
 
+((¬p) ∨ (q ∧ r))
+
+F V (F)
+
+F
 
 ////////////////////////////////////////////////
 
+(4 - 1) - 2
+
 Order of operations
     ¬ evaluates right to left
-        ¬¬p is equivalent to....
+        ¬¬p is equivalent to....(¬(¬p))
 
     ∧ and ∨ evaluate left to right
-        p ∧ q ∧ r is equivalent to....
-        p ∨ q ∨ r is equivalent to....
+        p ∧ q ∧ r is equivalent to....((p ∧ q) ∧ r)
+        p ∨ q ∨ r is equivalent to....(p ∨ q) ∨ r
 
     → evaluates right to left
-        p → q → r is equivalent to....
+        p → q → r is equivalent to....p → (q → r)
 
 
 
@@ -170,7 +187,11 @@ p ∧ q ∨ r ∧ p
 
 rewrite with ():
 
-top-level operator?
+(p ∧ q) ∨ (r ∧ p)
+
+
+
+top-level operator? V
 
 
 
@@ -184,27 +205,32 @@ Classifying truth tables.
 Contingent, contradictory, tautology
 
 
-Definitions/examples
+///
 
 contingent - the overall statements is true for
     some truth assignments and false for others
 
 Example?
 
+p AND q
 
+///
 
 contradictory - for all possible truth assignments,
     the overall statement is false
 
 Example?
 
+p ^ !p
 
+///
 
 tautology - for all possible truth assignments,
     the overall statement is true
 
 Example?
 
+p V !p
 
 ////////////////////////////////////////
 
@@ -212,16 +238,17 @@ Write a truth table for:
 
 p ∨ q → p
 
-
+            *
 ----------------
 p q | p ∨ q → p
 ----------------
-T T |
-T F |
-F T |
-F F |
+T T |   T   T
+T F |   T   T
+F T |   T   F
+F F |   F   T
 ----------------
 
+Contingent
 
 --> how would we mark the top-level operator?
 
@@ -241,22 +268,46 @@ one truth assignment that makes the statement true
 
 
 - what kind of statement is satisfiable? what kind is not?
+    satisfiable: contingent, tautology
+    not satisfiable: contradictory
 
 
 - is this satisfiable? How would we show it?
 
         (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
 
+        need ONE truth assignment that makes it true
+
+        p: T
+        q: T
+        r: T
+
+
 
 --> how would we show something was NOT satisfiable?
+
+would need full truth table and show statement is contradictory
 
 /////////////////////////////////////////
 
 Logical equivalence.
 
+!(p ^ q)
+
+!p V !q
+
+DeMorgan's law
+
 --> how to show two statements ARE equivalent?
 
+truth tables.
+
+for every truth statement, both statements have the same output
+
 --> how to show two statements are NOT equivalent?
+
+just need ONE truth assignment that has different outputs
+for the two statements
 
 ////////////////////////////////////////
 
@@ -265,6 +316,9 @@ Parse trees
 --> what are they?
 
 --> draw one for (p ∧ q) → ¬r
+
+
+p ^ q ^ r V p -> q
 
 
 --> how do they relate to programming?
