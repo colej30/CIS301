@@ -1,0 +1,84 @@
+/*
+Suppose we know:
+
+    I am in the CS department or I am in the ECE department
+    I am not in the ECE department.
+    If I can log in to the CS lab computers
+        then I am in the CS department.
+
+I want to prove:
+    I can log in to the CS lab computers and I am in the CS department.
+
+Premises:
+p ∨ q
+¬q
+p → r
+
+Conclusion: r ∧ p
+*/
+
+/*
+          *
+---------------
+p q r | p ∨ q
+---------------
+T T T |
+T T F |
+T F T |
+T F F |
+F T T |
+F T F |
+F F T |
+F F F |
+---------------
+
+
+*/
+
+/*
+        *
+---------------
+p q r | ¬q
+---------------
+T T T |
+T T F |
+T F T |
+T F F |
+F T T |
+F T F |
+F F T |
+F F F |
+---------------
+
+*/
+
+/*
+          *
+---------------
+p q r | p → r
+---------------
+T T T |
+T T F |
+T F T |
+T F F |
+F T T |
+F T F |
+F F T |
+F F F |
+---------------
+
+*/
+
+          *
+---------------
+p q r | r ∧ p
+---------------
+T T T |
+T T F |
+T F T |
+T F F |
+F T T |
+F T F |
+F F T |
+F F F |
+---------------
