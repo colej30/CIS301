@@ -103,17 +103,7 @@ translation?
 
 
 
-
-
 --> what must be true if answer is NOT 25?
-
-if (x <= 2 || y >= 0) {
-    if (z != 17) {
-        answer = 25;
-    }
-}
-
-
 
 
 
