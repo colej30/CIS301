@@ -29,17 +29,17 @@ Propositional logic.
 
 Which ones are propositions?
 
-Today is Thursday.
+    Today is Thursday. yes
 
-What time is it?
+    What time is it? no
 
-x == 2
+    x == 2 yes
 
-Pigs can fly.
+    Pigs can fly. yes
 
-Drive carefully.
+    Drive carefully. no
 
-y <= 4
+    y <= 4 yes
 
 
 
@@ -48,27 +48,23 @@ y <= 4
 Suppose we have these propositional atoms:
 
     p: It is below freezing.
-
     q: It is snowing.
-
     r: y <= 4
-
     s: x == 2
-
 
 How would we express these as English sentences?
 
-    ¬p:
+    ¬p: It is not below freezing
 
-    p ∧ q:
+    p ∧ q: it is below freezing and it is snowing
 
-    p → q :
+    p → q : If it below freezing, then it is snowing
 
-    ¬p → ¬q:
+    ¬p → ¬q: If it is not below freezing, then it is not snowing
 
-    r ∨ s:
+    r ∨ s: y <= 4 || x == 2
 
-    ¬r:
+    ¬r: !(y <= 4). would probably write y > 4
 
 ///////////////////////////////
 
@@ -77,9 +73,13 @@ Example:
 You can't enroll for the course if you haven't
 taken the prerequisite or don't have enough hours.
 
-
 --> what are the propositional atoms?
 
+p: You can enroll for the course
+q: You have taken the prerequisite
+r: You have enough hours
+
+!q V !r -> !p
 
 --> translate to propositional logic:
 
@@ -93,20 +93,36 @@ if (x <= 2 || y >= 0) {
         answer = 25;
     }
 }
-
-What are we promising about answer?
-
 propositional atoms?
+
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer == 25
 
 translation?
 
-
+(p V q) ^ !r -> s
 
 
 --> what must be true if answer is NOT 25?
 
+if (x <= 2 || y >= 0) {
+    if (z != 17) {
+        answer = 25;
+    }
+}
 
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer == 25
 
+if answer isn't 25, then ....
+
+!s -> (!p ^ !q) V r
+
+!(p V q)
 
 //////////////////////////////////
 
@@ -121,10 +137,28 @@ Consider these two statements:
 
 --> how could we translate them to propositional logic statements?
 
+p: I am at least 16 years old
+q: I can drive a car
+
+1) p -> q
+2) !p V q
+
 --> are they saying the same thing?
 
 
 --> could we PROVE it?
+        *         *
+-----------------------
+p q | p -> q | !p V q
+-----------------------
+T T |   T    | F  T
+T F |   F    | F  F
+F T |   T    | T  T
+F F |   T    | T  T
+-----------------------
+
+Both statements have the same output for every possible input,
+so they are equivalent. (They are both only false when p=T and q=F.)
 
 
 
@@ -146,6 +180,11 @@ How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
 
+if (a != 4 && a != 5) {
+    statements
+}
+
+
 ///
 
 if (a == 4 && b == 5) {
@@ -155,16 +194,18 @@ if (a == 4 && b == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if (a != 4 || b != 5) {
+    statements
+}
 
 
 //////////////////////////////
 
 DeMorgan's laws in propositional logic:
 
-¬(p ∨ q) is equivalent to...
+¬(p ∨ q) is equivalent to...¬p ∧ ¬q
 
-¬(p ∧ q) is equivalent to...
+¬(p ∧ q) is equivalent to...¬p ∨ ¬q
 
 
 --> how can we prove DeMorgan's laws?
@@ -181,6 +222,9 @@ if (Character.isDigit(letter) == true || num < 10) {
 
 --> how would we negate it without using a ! operator?
 
+if (Character.isDigit(letter) == false && num >= 10) {
+    statements
+}
 
 
 ///////////////////////
@@ -193,6 +237,9 @@ if ((y >= 4 && num != 14) || x > 0) {
 
 negate it:
 
+if ((y < 4 || num == 14) && x <= 0) {
+    statements
+}
 
 
 ///////////////////////
@@ -215,21 +262,25 @@ p ∧ p ≡ p
 ¬(¬p) ≡ p                   (double negation law)
 
 
-p ∨ q ≡ q ∨ p               (commutative laws)
+p ∨ q ≡ q ∨ p                   (commutative laws)
 p ∧ q ≡ q ∧ p
 
 
-p ->q vs q -> p?
+p → q vs q → p? NOT commutative
+
+    p = T       p → q would be false
+    q = F       q → p would be true
 
 
-(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)               (associative laws)
+(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)                 (associative laws)
 (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
 
+(2 + 3) + 5 equivalent to 2 + (3 + 5)
 
-p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)         (distributive laws)
-p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)
+p ∨ (q ∧ r) ≡ (p V q) ^ (p V r)                 (distributive laws)
+p ∧ (q ∨ r) ≡ (p ^ q) V (p ^ r)
 
-
+    2 * (3 + 4) = 2*3 + 2*4
 
 p → q ≡ ¬q → ¬p                         (contrapositive)
 p → q ≡ ¬p ∨ q          (can turn implies into an or)
@@ -242,6 +293,7 @@ What is equivalent to:
 
 ¬p → q
 
+p V q
 
 //////////////////////////
 
@@ -250,8 +302,16 @@ are these equivalent?
     (p → q) → r
     p → (q → r)
 
+p = F
+q = T
+r = F
+
+(p → q) → r would be false
+p → (q → r) would be true
 
 In general, how to show statements are NOT equivalent?
+    just need one truth assignment where the outputs are different,
+    but you *can* do truth tables to find the counterexample
 
 /////////////////////////
 
@@ -263,7 +323,8 @@ Proving an argument.
     from our premises.
 
 
---> What do we want to show?
+--> What do we want to show? every time the premises are true,
+    the conclusion is also true
 
 ///
 
@@ -278,19 +339,23 @@ Suppose we know:
     I can log in to the CS lab computers if
         I am in the CS department.
 
-
 I want to prove:
 
     I can log in to the CS lab computers
         and I am in the CS department.
 
-
 --> How would we translate to propositional logic?
 
+    p: I am in the CS department
+    q: I am in the ECE department
+    r: I can log in to the CS lab computers
 
 Translations:
+    p V q
+    !q
+    p -> r
 
-
+    conclusion: r ^ p
 
 
 
@@ -299,6 +364,13 @@ Translations:
 
 We want to show that whenever ALL the premises are true,
     then the conclusion is also true.
+
+
+If premise1 ^ premise2 ^ ... ^ premiseN -> conclusion
+
+(p V q) ^ (!q) ^ (p -> r) -> r ^ p
+
+would need to be a tautology
 
 ////////////////////////////
 (for easy copying)
@@ -326,9 +398,19 @@ Proposed conclusion:
     It is sunny.
 
 
+p: it is sunny
+q: I wear sunscreen
+
+Premises: p->q, q
+conclusion: p
+
+
 --> How can we show it is invalid?
 
+p = F
+q = T
 
+argument is invalid (all premises true, conclusion false)
 
 ///////////////////////////
 

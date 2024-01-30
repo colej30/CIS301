@@ -22,16 +22,20 @@ Conclusion: r ∧ p
 ---------------
 p q r | p ∨ q
 ---------------
-T T T |
-T T F |
-T F T |
-T F F |
-F T T |
-F T F |
-F F T |
-F F F |
+T T T |   T
+T T F |   T
+T F T |   T
+T F F |   T
+F T T |   T
+F T F |   T
+F F T |   F
+F F F |   F
 ---------------
 
+Contingent
+
+- T: [T T T] [T T F] [T F T] [T F F] [F T T] [F T F]
+- F: [F F T] [F F F]
 
 */
 
@@ -40,45 +44,70 @@ F F F |
 ---------------
 p q r | ¬q
 ---------------
-T T T |
-T T F |
-T F T |
-T F F |
-F T T |
-F T F |
-F F T |
-F F F |
+T T T | F
+T T F | F
+T F T | T
+T F F | T
+F T T | F
+F T F | F
+F F T | T
+F F F | T
 ---------------
 
-*/
+Contingent
 
+- T: [T F T] [T F F] [F F T] [F F F]
+- F: [T T T] [T T F] [F T T] [F T F]
+
+*/
 /*
           *
 ---------------
 p q r | p → r
 ---------------
-T T T |
-T T F |
-T F T |
-T F F |
-F T T |
-F T F |
-F F T |
-F F F |
+T T T |   T
+T T F |   F
+T F T |   T
+T F F |   F
+F T T |   T
+F T F |   T
+F F T |   T
+F F F |   T
 ---------------
+Contingent
+
+- T: [T T T] [T F T] [F T T] [F T F] [F F T] [F F F]
+- F: [T T F] [T F F]
 
 */
-
           *
 ---------------
 p q r | r ∧ p
 ---------------
-T T T |
-T T F |
-T F T |
-T F F |
-F T T |
-F T F |
-F F T |
-F F F |
+T T T |   T
+T T F |   F
+T F T |   T
+T F F |   F
+F T T |   F
+F T F |   F
+F F T |   F
+F F F |   F
 ---------------
+Contingent
+
+- T: [T T T] [T F T]
+- F: [T T F] [T F F] [F T T] [F T F] [F F T] [F F F]
+
+
+/*
+Want to look at the set of truth assignments that make
+each premise true
+
+[T T T] [T T F] [T F T] [T F F] [F T T] [F T F]
+[T F T] [T F F] [F F T] [F F F]
+[T T T] [T F T] [F T T] [F T F] [F F T] [F F F]
+
+Only [T F T] is in all three lists
+It is also true for the conclusion
+The argument is valid
+*/
