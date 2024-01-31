@@ -1,0 +1,1 @@
+//p ∨ (q ∧ r)     is equivalent to       (p ∨ q) ∧ (p ∨ r)
