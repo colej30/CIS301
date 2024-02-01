@@ -3,3 +3,11 @@ Given premises:  a ∧ b, c
 Use natural deduction to prove: b ∧ c
 
 */
+
+a ∧ b, c |- b ∧ c
+{
+    1. a ∧ b            premise
+    2. c                premise
+    3. b                ^e2 1
+    4. b ∧ c            ^i 3 2
+}

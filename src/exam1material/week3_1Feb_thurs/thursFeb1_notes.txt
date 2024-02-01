@@ -1,11 +1,16 @@
 HW 3 due Tuesday, February 6
 
+    Correction: 4_valid.txt
+        part (a) in both sections, delete conclusion translation
+
     Reminder: correct submission format
 
     repo/tree/digital fingerprint
 
     starting on HW 3, there will be a 5 pt deduction for
     submissions in the wrong format
+
+
 
 Exam 1 is Thursday, February 8
     take full time
@@ -25,6 +30,8 @@ Today:
 
 Want to prove a conclusion logically follows from
 a set of premises.
+    every single time all the premises were true, then
+    the conclusion was also true
 
 ...could use truth tables
 
@@ -78,7 +85,7 @@ AND rules idea.
 
    --> in what situations do you think we could do that?
 
-
+if I already had P and Q separately
 
 
 
@@ -86,11 +93,12 @@ AND rules idea.
 
     --> what new claims would make sense using that statement?
 
-
+P
+Q
 
     --> what happened to the AND operator in both cases?
 
-
+eliminated
 
 //////////////////////////
 
@@ -104,12 +112,6 @@ AND introduction:
         P ∧ Q
 
 
-
---> How could we demonstrate this rule in a truth table?
-
-
-
-
 ///
 
 AND elimination:
@@ -117,12 +119,6 @@ AND elimination:
         P ∧ Q              P ∧ Q
  ∧e1 : ---------    ∧e2 : ---------
           P                  Q
-
-
-
---> How could we demonstrate these rules in a truth table?
-
-
 
 //////////////////////////////////
 
@@ -136,7 +132,7 @@ and also:
 
 What could we claim with  ∧i?
 
-
+(a ∨ ¬b) ^ (c → d)
 
 //////////////////////////////////
 
@@ -152,8 +148,8 @@ Natural deduction proof syntax.
     }
 
 
-
 claim: a propositional logic statement
+
 justificaton: the rule justifying the corresponding claim
     (along with line numbers as needed to reference previous claims)
 
@@ -179,7 +175,13 @@ Example:
 Given premises:  a ∧ b, c
 Use natural deduction to prove: b ∧ c
 
-
+a ∧ b, c |- b ∧ c
+{
+    1. a ∧ b            premise
+    2. c                premise
+    3. b                ^e2 1
+    4. b ∧ c            ^i 3 2
+}
 
 
 /////////////////////////////////
@@ -204,6 +206,14 @@ p ∧ q ∧ r ⊢ q
 ////////////////////////////////
 
 Prove that ∧ is commutative:
+
+p ^ q |- q ^ p
+{
+    1. p ^ q            premise
+    2. p                ^e1 1
+    3. q                ^e2 1
+    4. q ^ p            ^i 3 2
+}
 
 
 
@@ -242,7 +252,8 @@ Or, could have done:
 p ∧ q ⊢ p ∨ q
 {
     1. p ∧ q            premise
-
+    2. p                ^e1 1
+    3. p V q            Vi1 2
 }
 
 
@@ -254,11 +265,19 @@ OR elimination
 Idea:
 - If an OR statement is true, what do we know?
 
+p V q
 
+p is true
+or, q is true
+(or both)
 
 
 - What if we can reach the same conclusion no matter which side
     of the OR is true?
+
+assume p is true -> reach conclusion
+assume q is true -> reach the same conclusion
+
 
 
 Rule summary:
@@ -285,7 +304,7 @@ else {
     some result
 }
 
---> what do we know is true here?
+--> what do we know is true here? some result
 
 
 ///////////////////////////////
@@ -318,6 +337,12 @@ Do you think we could prove:
 p ∨ q ⊢ p ∧ q
 
 
+invalid
+
+1 truth assignment where premise is true but the conclusion is false
+
+p = T
+q = F
 
 ////////////////////////////////
 
@@ -328,13 +353,14 @@ Proving equivalence.
     e.g., DeMorgan's laws:
     ¬(p ∨ q) is equivalent to ¬p ∧ ¬q
 
-
+made two truth tables
+made sure that both statements had same output for every single
+truth assignment
 
 
 --> how do we do it with proofs?
 
-
-
+need two proofs, take turns swapping premises/conclusion
 
 ////////////////////////////////
 
@@ -366,9 +392,16 @@ r: grade <= 90
 
 Express conditions in proposition logic:
 
+(p V q) ^ (r V q)
+
+q V (p ^ r)
 
 
 Equivalent to:
+
+if (extraCredit == true || (grade >= 80 && grade <= 90)) {
+    //do stuff
+}
 
 
 --> what is an equivalent, simpler if-statement?
@@ -378,6 +411,8 @@ Equivalent to:
 ///////////////////////////////////
 
 Next set of deduction rules: implies operator
+
+(stopped here, will continue on Tuesday)
 
 /////////////////////////////////////
 

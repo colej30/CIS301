@@ -1,1 +1,13 @@
 p ∨ q ⊢ q ∨ p
+{
+    1. p V q            premise
+    2. {
+        3. p            assume
+        4. q V p        Vi2 3
+    }
+    5. {
+        6. q            assume
+        7. q V p        Vi1 6
+    }
+    8. q V p            Ve 1 2 5
+}
