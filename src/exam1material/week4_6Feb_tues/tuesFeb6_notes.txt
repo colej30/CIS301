@@ -1,0 +1,192 @@
+HW 3 due tonight
+
+    Reminder: correct submission format
+
+    repo/tree/digital fingerprint
+
+    starting on HW 3, there will be a 5 pt deduction for
+    submissions in the wrong format
+
+    no new homework this week
+
+
+Exam 1 is Thursday, February 8
+    will review today
+
+////////////////////////////////
+
+Today:
+
+- Reminder: order of operations
+- Deduction rules with implies operator
+- Exam 1 review
+
+////////////////////////////////
+
+Order of operations reminder.
+
+
+p ∧ q ∨ r is equivalent to... ?
+
+p, q, r ⊢ p ∧ q ∨ r
+{
+    1. p            premise
+    2. q            premise
+    3. r            premise
+
+    //what now?
+}
+
+///////////////////////////////
+
+Implies-elimination, →e
+
+      P, P → Q
+→e: -----------
+        Q
+
+
+Example:
+
+//Suppose we know x > 5. What can we conclude?
+
+if (x > 5) {
+    y = 17;
+}
+
+///////////////////////////////
+
+Syntax for using →e:
+
+a. P                (some justification)
+b. P → Q            (some justification)
+c. Q                →e b a
+
+
+////////////////////////////////////////
+
+Example (implies1.logika):
+
+(p ∧ q) → r,  p → q,  p  ⊢ r
+
+
+
+Example (implies2.logika):
+
+p → r,  q → r,  p ∨ q  ⊢ r
+
+
+////////////////////////////////////////
+
+Implies-introduction, →i
+
+      {P assume
+      ... Q}
+→i: -----------
+      P → Q
+
+
+Idea: if Q is true whenever P is, then we can promise that
+    if P is true, then Q is too.
+
+This is the relationship P → Q.
+
+
+--> how does this relate to proofs with truth tables?
+
+
+
+
+
+////////////////////////////////////////
+
+Syntax for using →i:
+
+a. {
+    b. P            assume
+    ...
+    c. Q            (some justification)
+}
+d. P → Q            →i a
+
+
+
+
+///////////////////////////////////////
+
+Examples:
+
+implies3.logika
+
+implies4.logika
+
+//////////////////////////////////////
+
+Exam 1 review.
+
+Covers everything we've done up to this point:
+
+- Basic logical reasoning (over English statements and if-statements)
+- Logic puzzles
+- Circuits
+- Truth tables
+- Parse trees
+- Proving two propositional logic statements are equivalent
+    how?
+    either truth tables (one for each, same set of truth assignments
+        make both true)
+    two natural deduction proofs (one as premise, one as conclusion
+        - both ways)
+
+- Prove propositional logic statements are NOT equivalent
+    how?
+
+    just need one truth assignment where the two statements
+    have different outputs
+
+- DeMorgan's laws on propositional logic (and their application)
+    (like the HW)
+
+- Satisfiability: whether there is at least one truth assignment
+    that makes the statement true
+
+    how prove satisfiable?
+        just need one truth assignment that makes statement true
+
+    how prove not satisfiable?
+        need full truth table, show all truth assignments
+        make statement false (i.e., contradictory)
+
+- Translating between English and propositional logic
+
+- Arguments (premises and a proposed conclusion)
+
+
+- Determining whether an argument is valid or invalid
+    how prove valid?
+        need to show that EVERY time the premises are all true
+        then the conclusion is also true
+
+    how prove invalid?
+        need to find ONE time that the premises are all true
+        but the conclusion is false
+
+- Proving an argument with truth tables
+    truth table for every premise and for the conclusion
+    find the set of truth assignments that made EVERY premise true
+        make sure that those truth assignments made the conclusion true
+
+- Natural deduction proofs in propositional logic using the
+    AND, OR, and IMPLIES rules
+
+
+Closed notes/computers.
+
+All problems will be "open-ended" - similar in content/format
+to HW problems.
+
+Some problems will ask for a proof or explanation -- read carefully!
+
+////////////////////////////////////////
+
+See previous exam.
