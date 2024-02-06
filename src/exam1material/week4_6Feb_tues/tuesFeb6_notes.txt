@@ -26,14 +26,14 @@ Today:
 Order of operations reminder.
 
 
-p ∧ q ∨ r is equivalent to... ?
+p ∨ q ∧ r is equivalent to... ?
 
-p, q, r ⊢ p ∧ q ∨ r
+q, r ⊢ p ∨ q ∧ r
 {
-    1. p            premise
-    2. q            premise
-    3. r            premise
-
+    1. q            premise
+    2. r            premise
+    3. q ∧ r        ^i 1 2
+    4. p ∨ q ∧ r    Vi2 3
     //what now?
 }
 
@@ -92,10 +92,6 @@ Idea: if Q is true whenever P is, then we can promise that
 This is the relationship P → Q.
 
 
---> how does this relate to proofs with truth tables?
-
-
-
 
 
 ////////////////////////////////////////
@@ -133,48 +129,61 @@ Covers everything we've done up to this point:
 - Parse trees
 - Proving two propositional logic statements are equivalent
     how?
-    either truth tables (one for each, same set of truth assignments
-        make both true)
-    two natural deduction proofs (one as premise, one as conclusion
-        - both ways)
+        truth tables
+            fill out two truth tables
+            show that for each truth assignment, both statements
+                have same output
+        natural deduction
+            do two proofs
+            one as premise, one as conclusion
+            then switch
 
-- Prove propositional logic statements are NOT equivalent
+- Proving propositional logic statements are NOT equivalent
     how?
 
-    just need one truth assignment where the two statements
-    have different outputs
+    need one counterexample (a truth assignment) where
+    the two statements have different output
+
 
 - DeMorgan's laws on propositional logic (and their application)
     (like the HW)
+
+    NOT(p AND q)      NOT p OR NOT q
+    NOT (p OR q)      NOT p AND NOT q
 
 - Satisfiability: whether there is at least one truth assignment
     that makes the statement true
 
     how prove satisfiable?
-        just need one truth assignment that makes statement true
+        need ONE truth assignment that makes it true
+        (or show truth table is tautology or contingent)
 
     how prove not satisfiable?
-        need full truth table, show all truth assignments
-        make statement false (i.e., contradictory)
+        need a full truth table, show contradictory
+
 
 - Translating between English and propositional logic
 
 - Arguments (premises and a proposed conclusion)
 
 
+
 - Determining whether an argument is valid or invalid
-    how prove valid?
-        need to show that EVERY time the premises are all true
-        then the conclusion is also true
+    how prove valid? need truth tables (see below)
 
     how prove invalid?
-        need to find ONE time that the premises are all true
-        but the conclusion is false
+        need one counterexample. find one truth assignment
+        where all premises are true but the conclusion is false
+
 
 - Proving an argument with truth tables
-    truth table for every premise and for the conclusion
-    find the set of truth assignments that made EVERY premise true
-        make sure that those truth assignments made the conclusion true
+    idea? need a truth table for every premise and the conclusion
+    show that every truth assignment that makes all the premises
+    true also makes the conclusion true
+
+    if I can do this, is a valid argument
+
+
 
 - Natural deduction proofs in propositional logic using the
     AND, OR, and IMPLIES rules
