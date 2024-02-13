@@ -1,1 +1,32 @@
 p → r, r → a ∨ b, a → q, b → t ⊢ p → q ∨ t
+{
+    1. p → r                premise
+    2. r → a ∨ b            premise
+    3. a → q                premise
+    4. b → t                premise
+
+    5. { //want p → q ∨ t
+        6. p                assume //the LHS of our implies
+        7. r                ->e 1 6
+        8. a V b            ->e 2 7
+
+        9. {
+            10. a           assume
+            11. q           ->e 3 10
+            12. q V t       Vi1 11
+
+            //goal: q V t
+        }
+        13. {
+            14. b           assume
+            15. t           ->e 4 14
+            16. q V t       Vi2 15
+
+            //goal: q V t
+        }
+        17. q V t           Ve 8 9 13
+
+        //goal: q ∨ t       (the RHS of our implies)
+    }
+    18. p → q ∨ t           ->i 5
+}

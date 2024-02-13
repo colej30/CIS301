@@ -1,1 +1,17 @@
 p → r, q → r ⊢ p → (q → r)
+{
+    1. p → r            premise
+    2. q → r            premise
+    3. { //we want p → (q → r)
+        4. q            assume //the LHS of our goal implies
+        5. { //we want: q -> r
+            6. q        assume //the LHS of our current goal implies
+            7. r        ->e 2 6
+
+            //goal: r (the RHS of our goal implies)
+        }
+        8. q -> r       ->i 5
+        //goal: q → r (the RHS of our goal implies)
+    }
+    9. p → (q → r)          ->i 3
+}

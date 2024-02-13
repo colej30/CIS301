@@ -1,10 +1,18 @@
 HW 4 will be posted after class
     due Tues Feb 20
 
-
 /////////////////
 
 Exam 1 results
+
+High: 100/100
+Average: 79/100
+
+A (90-100): 10 students
+B (80-89): 18 students
+C (70-79): 12 students
+D (60-69): 5 students
+F (below 60): 2 students
 
 
 Go over problems (full solution will be posted after class)
@@ -133,14 +141,26 @@ p → q, ¬q ⊢ ¬p
 {
     1. p → q            premise
     2. ¬q               premise
-
+    3. {
+        4. p            assume
+        5. q            ->e 1 4
+        6. _|_          !e 5 2
+        //goal: _|_
+    }
+    7. !p               !i 3
 }
 
 
 p ⊢ ¬¬ p
 {
     1. p            premise
+    2. {
+        3. ¬ p      assume
+        4. _|_      !e 1 3
 
+        //goal: _|_
+    }
+    5. ¬¬ p         !i 2
 }
 
 
@@ -155,7 +175,15 @@ p → ¬q ⊢ ¬(p ∧ q)
 ///////////////////
 
 (negation2.logika)
-¬p ∧ ¬q ⊢ ¬(p ∨ q) (what is this? you'll prove the reverse on your HW)
+¬p ∧ ¬q ⊢ ¬(p ∨ q) (what is this? you'll prove the reverse
+                    on your HW)
+
+
+///////////
+
+<-- STOPPED HERE. Will continue on Thurs.
+
+///////////
 
 
 (negation3.logika)

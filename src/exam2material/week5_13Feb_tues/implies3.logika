@@ -1,1 +1,21 @@
 p → (q → r) ⊢ (p → q) → (p → r)
+{
+    1. p → (q → r)              premise
+    2. { //want (p → q) → (p → r)
+        3. p -> q               assume //the LHS of goal ->
+
+        4. { //prove p->r
+            5. p                assume //the LHS of goal ->
+            6. q -> r           ->e 1 5
+            7. q                ->e 3 5
+            8. r                ->e 6 7
+
+            //goal: r
+
+        }
+        9. p->r                 ->i 4
+
+        //goal: p->r (the RHS of our goal ->)
+    }
+    10. (p → q) → (p → r)       ->i 2
+}
