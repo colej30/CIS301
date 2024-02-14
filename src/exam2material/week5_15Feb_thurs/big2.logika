@@ -1,0 +1,9 @@
+(p → q) → r, s → ¬p, t, (¬s ∧ t) → q ⊢ r
+{
+    1. (p → q) → r              premise
+    2. s → ¬p                   premise
+    3. t                        premise
+    4. (¬s ∧ t) → q             premise
+
+    //where does r come from?
+}

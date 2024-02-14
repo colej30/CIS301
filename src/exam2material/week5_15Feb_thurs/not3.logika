@@ -1,0 +1,5 @@
+p → q ⊢ ¬q → ¬p
+{
+    1. p → q            premise
+
+}

@@ -1,0 +1,8 @@
+(c ∧ n) → t, h ∧ ¬s, h ∧ ¬(s ∨ c) → p ⊢ (n ∧ ¬t) → p
+{
+    1. (c ∧ n) → t              premise
+    2. h ∧ ¬s                   premise
+    3. h ∧ ¬(s ∨ c) → p         premise
+
+    //can we get h, !(s V c) from premise 3?
+}

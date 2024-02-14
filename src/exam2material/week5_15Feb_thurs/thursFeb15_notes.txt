@@ -1,0 +1,179 @@
+HW 4 posted, due Tues Feb 20
+
+--> check the format of your link
+
+////////////////
+
+Today:
+- more with not introduction and not elimination
+- remaining negation rules
+- natural deduction proof strategies
+- proving equivalence with natural deduction
+
+/////////////////
+
+(not3.logika)
+p → q ⊢ ¬q → ¬p (what is this?)
+
+/////////////////////////
+
+Contrapositives with if-statements:
+
+if (condition) {
+    statement
+}
+
+What do we know if "condition" is true?
+
+
+What do we know if "statement" is NOT true?
+
+
+
+
+
+
+////////////////////
+
+Bottom-elimination:
+
+         ⊥
+⊥e:  ----------
+         R
+
+
+Proof by contradiction (reductio ad absurdum):
+
+       {¬P assume
+        ... ⊥}
+pbc:  ----------
+          P
+
+
+--> Difference between ¬i and pbc?
+
+///////////////////////////////////
+
+First examples.
+
+p, ¬p ⊢ q
+
+
+    //how does this make logical sense?
+
+
+p ∨ q, ¬p ⊢ q
+{
+    1. p ∨ q            premise
+
+}
+
+
+
+¬¬p ⊢ p
+{
+    1. ¬¬p          premise
+
+}
+
+
+
+
+///////////////////////////////////
+
+In separate files:
+
+
+¬q → ¬p ⊢ p → q         //not4.logika
+
+
+
+
+¬(¬p ∨ ¬q) ⊢ p ∧ q      //not5.logika
+
+
+
+
+//////////////////
+
+A THEOREM in propositional logic is something that is
+always true with no need for premises. For example:
+
+
+Law of the excluded middle. (LEM)
+
+p ∨ ¬p
+
+
+
+What would a theorem be in a truth table?
+
+
+Prove LEM:
+
+⊢ p ∨ ¬p                //lem.logika
+
+
+
+⊢ (theorem that you are trying to prove)
+
+//////////////////////////////////
+
+How do we approach proofs?
+
+1. Write out all the premises
+2. Extract all information from premises (∧e, →e)
+3. Look at what you are trying to prove (find its top level operator)
+
+    ∧ -
+
+    ∨ -
+    → -
+    ¬(something) -
+
+    just a propositional atom?
+
+
+
+After each claim - see what we can extract that is new.
+
+Inside a subproof - think about top-level op for your goal in that subproof
+
+
+
+Doesn't fit a pattern or doesn't work out from above:
+- Negation involved?
+- As a last resort, copy/paste LEM proof to have (something) ∨ ¬(something).
+    Use OR-elimination on it.
+
+
+
+--> when do we open a subproof?
+--> what is the first justification?
+--> can we assume anything?
+
+/////////////////////////////////
+
+Putting it all together.
+
+
+(big1.logika)
+(c ∧ n) → t, h ∧ ¬s, h ∧ ¬(s ∨ c) → p ⊢ (n ∧ ¬t) → p
+
+//////////////////
+
+(big2.logika)
+(p → q) → r, s → ¬p, t, (¬s ∧ t) → q ⊢ r
+
+
+/////////////////////////////////
+
+Proving equivalence (demorgan.logika)
+
+¬p ∨ ¬q     and     ¬(p ∨ q)
+
+/////////////////////////////////
+
+Next time:
+- soundness and completeness
+- begin sets
