@@ -1,4 +1,23 @@
 ⊢ p ∨ ¬p
 {
+    //must start with subproof
+    //pbc, !i, Ve, ->i
 
+    1. { //use pbc to get p V !p
+        2. !(p ∨ ¬p)            assume
+
+        //if I had p V !p, it would contradict!
+
+        3. { //use !i to get !p
+            4. !p               assume
+            5. p V !p           Vi2 4
+            6. _|_              !e 5 2
+        }
+        7. p                   pbc 3
+        8. p V !p               Vi1 7
+        9. _|_                  !e 8 2
+
+        //goal: _|_
+    }
+    10. p ∨ ¬p                  pbc 1
 }

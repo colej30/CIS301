@@ -2,4 +2,37 @@
 {
     1. ¬(¬p ∨ ¬q)           premise
 
+    //this strategy doesn't go anywhere
+    /*
+    2. {
+        3. !(p ^ q)         assume
+
+        //hope we a _|_
+    }
+    */
+
+    //think of p, q as two separate proofs
+    //try to prove p with pbc
+
+    2. { //pbc to get p
+        3. !p               assume
+
+        //!p V !q would contradict with our premise, !(!p V !q)
+
+        4. !p V !q          Vi1 3
+        5. _|_              !e 4 1
+
+        //goal: _|_
+    }
+    6. p                    pbc 2
+
+    7. { //use pbc to get q
+        8. !q               assume
+        9. !p V !q          Vi2 8
+        10. _|_             !e 9 1
+
+        //goal: _|_
+    }
+    11. q                   pbc 7
+   12. p ^ q                ^i 6 11
 }
