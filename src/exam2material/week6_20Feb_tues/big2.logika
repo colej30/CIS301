@@ -5,5 +5,32 @@
     3. t                        premise
     4. (¬s ∧ t) → q             premise
 
-    //where does r come from?
+    //can we do anything with premises? no.
+
+    //any OR statement? nope
+
+    //goal: to prove p->q, if I had that could use ->e
+    //on #1 to get r
+
+    5. { //pattern to use ->i to get p->q
+        6. p                    assume
+
+        //goal: q
+
+        //if we had !s ^ t, could use ->e on #4 to get q
+        //already have t, just need !s
+
+        7. { //pattern to use !i to get !s
+            8. s                assume
+            9. !p               ->e 2 8
+            10. _|_             !e 6 9
+
+            //goal: _|_
+        }
+        11. !s                  !i 7
+        12. !s ^ t              ^i 11 3
+        13. q                   ->e 4 12
+    }
+    14. p->q                    ->i 5
+    15. r                       ->e 1 14
 }

@@ -1,5 +1,13 @@
-HW 4 posted, due tonight
+HW 4 due tonight
+    if no pattern, try pbc
+    conclusion
+    try assuming !(conclusion)
 
+    think about what statement would give a _|_
+    try to prove the thing that would give you the _|_
+
+
+HW 5 will be posted today - due Tues Feb 27
 
 ////////////////
 
@@ -20,39 +28,45 @@ Today:
 
 Proving equivalence (demorgan.logika)
 
-¬p ∨ ¬q     and     ¬(p ∨ q)
+¬p ∨ ¬q     and     ¬(p ∧ q)
 
 /////////////////////////////////
 
-SOUNDNESS and COMPLETENESS of propositional logic
+SOUNDNESS and COMPLETENESS of natural deduction in
+    propositional logic
 
+    "provable": prove using natural deduction
+    "true": demonstrate an argument with truth tables
 
 
 SOUNDNESS: everything that is provable is actually true
 
-How does this relate to our proof system?
-anytime I can prove something with natural deduction, it would be the case
-that anytime all the premises were true in a truth table then the
-conclusion was also true.
+p, q            p ^ q
 
-
-p
-q
-p ^ q
+If I can prove an argument with natural deduction,
+then I can also prove it with truth tables
 
 
 COMPLETENESS: everything that is true is provable
 
 How does this relate to our proof system?
 
-anytime I can show an argument is valid with truth tables,
-it is possible to prove that argument with natural deduction
-
+if I can prove an argument with truth tables
+then I can also prove it with natural deduction
 
 
 --> what would it mean if a proof system was unsound?
 
+    we can prove things that aren't true
+
+    this would be really really bad
+
+
 --> what would it mean if a proof system was incomplete?
+
+    some things that are true would not be provable
+
+    this is OK, and wouldn't make our deduction system unusable
 
 
 
@@ -73,15 +87,18 @@ are true, then q is also true
 
 Sets.
 
+
+
 {1,1,3,5,7} = {1,3,5,7} = {7,3,1,5}
 
 
-- A set is an unodered collection of elements
+- A set is an unordered collection of elements
 
+∈: is in, exists in
 
-    x ∈ A       means that x is an element in set A
+    x ∈ A: x exists in set A, x is in A
 
-    x ∉ A       means that x is not an element in set A
+    x ∉ A: x does not exist in set A, x is not in A
 
 
 
@@ -94,65 +111,82 @@ Example: A = {1,4,7,11,20}
 
 - Common sets in math:
 
-    ℕ = natural numbers (positive integers) {1, 2, 3, ..}
+    ℕ: natural numbers (positive integers)
 
-    ℤ = set of all integers {...-2,-1,0,1,2,...}
+    ℤ: integers (positive, negative, and 0)
+        (includes all natural numbers)
 
-    ℚ = rationals p/q (how to define p and q?)
-        where p ∈ ℤ ^ q ∈ ℤ ^ q != 0
+    ℚ: rational numbers. p/q where p and q are integers and
+        q does not equal 0
+        includes all integers (because 4 is 4/1)
 
-    ℝ = real
+    ℝ: real numbers (anything that is not complex)
+        includes all rational numbers
+        includes all numbers with decimals, even things like
+            pi, e, sqrt(2)
 
-    ℂ = complex (real + imaginary)
+    ℂ: complex
+        includes all real numbers
+        also includes a + bi (i is imaginary)
 
-    ∅ = empty/null set
+    ∅: empty set, null set {}
 
 
 ////////////////////////////////////
 
 Set builder notation.
 
+: means, where, such that
+| means the same thing
+
 {variable : conditions}
 
 
 {x : x ∈ ℕ, 5 ≤ x ≤ 10}
+
+    {5, 6, 7, 8, 9, 10}
 
 
 
 
 {x : x is prime}
 
-
+    {2, 3, 5, 7, 11, ...}
 
 
 
 {d : d is a weekday}
+
+    {Monday, Tuesday, Wednesday, Thursday, Friday}
 
 
 
 
 {v : v is a vowel}
 
+    {a, e, i, o, u}
+
 
 
 {k : k is a letter in "abracadabra"}
 
-
+    {a, b, r, c, d}
 
 
 {x : x = 2k,  k ∈ ℕ}
 
-
+    {2, 4, 6, ...}
 
 
 {n : n = k^2, k ∈ Z}
 
+    {0, 1, 4, 9, 16, ...}
 
 
 
 {n : n = 3a + 1, a ∈ ℕ, 1 ≤ a ≤ 4}
 
-
+    {4, 7, 10, 13}
 
 
 ///////////////////////////////////////
@@ -162,17 +196,17 @@ Describe these sets in set builder notation
 
 {5,10,15}
 
-
+    {x : x = 5k, k ∈ ℕ, k <= 3}
 
 
 {CIS 115, CIS 200, CIS 300, CIS 301}
 
-
+    {x : x is a CIS course and x is part of the CIS minor}
 
 
 {2,4,8,16,32}
 
-
+    {x : x = 2^k, k ∈ ℕ, k <= 5}
 
 
 ///////////////////////////////////////
@@ -185,7 +219,7 @@ of all elements that are in either A or B or both.
 
 How could we express in set builder notation?
 
-A ⋃ B =
+A ⋃ B = {x : x ∈ A ⋁ x ∈ B}
 
 
 //////////////////////////////////////
@@ -200,11 +234,13 @@ of all elements that are in both A and B.
 
 How could we express in set builder notation?
 
-A ⋂ B =
+A ⋂ B = {x : x ∈ A ⋀ x ∈ B}
 
 ///////////////////////////////////////
 
-Set difference, -
+Set difference,
+
+/ or \ (means the same thing)
 
 The difference between the sets A and B, written A - B, is the set
 of all elements that are in A but are not in B.
@@ -212,7 +248,7 @@ of all elements that are in A but are not in B.
 
 How could we express in set builder notation?
 
-A - B =
+A - B = {x : x ∈ A ⋀ x ∉ B}
 
 //////////////////////////////////////
 ⋃ ⋂ ⋁ ⋀ ∈ ∉
@@ -225,13 +261,13 @@ B = {2,3,4,5,6,7}
 
 Find:
 
-A ⋃ B =
+A ⋃ B = {1, 2, 3, 4, 5, 6, 7, 10, 11, 12}
 
-A ⋂ B =
+A ⋂ B = {3, 7}
 
-A - B =
+A - B = {1,10,11,12} (start with A, implement the intersection)
 
-B - A =
+B - A = {2,4,5,6}
 
 
 //////////////////
@@ -253,6 +289,7 @@ B = {1,3,5,8}
 --> is A a subset of B?
 
 
+    no. 4 is not in B.
 
 
 A = {8,1,3}
@@ -260,6 +297,8 @@ A = {8,1,3}
 B = {1,3,5,8}
 
 --> is A a subset of B?
+
+    yes. every element from A is in B.
 
 //////////////////////////////////
 
@@ -272,9 +311,11 @@ Quantifiers - helps describe all or some elements in a set
 
 
 
-∀ x ∈ A ...     "For all elements x in set A..."
 
-∃ x ∈ A ...     "There exists at least one element x in set A..."
+
+∀ x ∈ A ...     means: for all x in A
+
+∃ x ∈ A ...     means:  there exist an x in A
 
 
 
@@ -282,43 +323,71 @@ Quantifiers - helps describe all or some elements in a set
 
 ∀ x ∈ ℝ (x^2 ≥ 0)       //what is this saying? why is it true?
 
+    the square of all real numbers is nonnegative
+
+    yes, this is true
 
 
 
 ∀ x ∈ ℝ (x^2 > 0)       //Is this true?
 
+    the square of all real numbers is positive
+
+    no. 0 is a real number, and 0 squared is not positive
 
 
 
 ∃ x ∈ ℤ (x^2 == 1)       //what is this saying? why is it true?
 
+    there is an integer whose square is 1
+    yes, 1 squared is 1
 
 
 ∃ x ∈ ℤ ∀ y ∈ ℤ (x + y == 1)       //what is this saying? Is it true?
 
+    there is an integer x where for all integers y
+        x + y == 1
+
+        no, I would need to find ONE x where this worked and
+        I would need a different x for each y
 
 
 ∀ x ∈ ℤ ∃ y ∈ ℤ (x + y == 1)
+
+    for all integers x, I can find another integer y where
+        x + y == 1
+
+        This IS true because I can choose a different y each
+        time
 
 
 /////////////////////////////////////
 
 Could we define whether set A is a subset of set B using quantifiers?
 
-A ⊆ B means ??
+A ⊆ B means ?? all elements in A are also in B
+    if an element is in A, then that element is in B
+
+    ∀ x ∈ A -> x ∈ B
 
 
 
 
 How could we define whether set A equals set B using quantifiers?
 
+    (∀ x ∈ A -> x ∈ B) ^ (∀ x ∈ B -> x ∈ A)
 
+    (if each is a subset of the other one, then they are equal)
 
 
 
 ∀ ∃     ∈ ∉     ∅ ⋂ ⋃ ⊂ ⊆   ⋀ ⋁ ¬ →     ℕ ℤ     ≠ ≤ ≥
 
 //////////////////////////////////////
+
+<-- stopped here, will continue on Thursday
+
+/////////////////////////////////////
 
 Properties about sets.
 
@@ -335,8 +404,7 @@ How would we prove this?
 
 A ⋃ (B ⋂ C) = (A ⋃ B) ⋂ (A ⋃ C).
 
-Idea: let x ∈ A ⋃ (B ⋂ C) . Show that x ∈ (A ⋃ B) ⋂ (A ⋃ C)
-Then let  x ∈ (A ⋃ B) ⋂ (A ⋃ C), show that x ∈ A ⋃ (B ⋂ C)
+Idea?
 
 
 //////////////////////////////////////
