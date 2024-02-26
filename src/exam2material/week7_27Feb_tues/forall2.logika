@@ -1,0 +1,5 @@
+/*
+Prove these statements are equivalent:
+
+∀ x (P(x) ⋀ Q(x))           (∀ x P(x)) ⋀ (∀ x Q(x))
+*/
