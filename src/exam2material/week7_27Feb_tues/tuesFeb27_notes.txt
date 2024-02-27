@@ -14,35 +14,7 @@ Today:
 
 //////////////////////
 
-Reminder (maybe our domain is people):
-
-    ∃ x student(x)
-
-    ¬(∃ x student(x))
-
-    ∃ x ¬student(x)
-
-    ∀ x student(x)
-
-    ¬(∀ x student(x))
-
-    ∀ x ¬student(x)
-
-/////////////////
-
-Predicates in math.
-
-Can use boolean functions to represent properties in math, like this:
-
-Domain: ℕ
-Big(x): whether x > 100
-
-∃ x Big(x)
-
-
-///////////////////////////////
-
-Domain: ℤ
+Domain: ℤ (the integers)
 
 
 What do these mean in English? Are they true?
@@ -50,10 +22,21 @@ What do these mean in English? Are they true?
 
 ∀ n ∃ m (n^2 < m)
 
+    For all integers, there is another integer such that
 
+    The square of all integers is less than some other integer
+
+    true. Take each square, add 1 -- that's an integer that's bigger
 
 ∀ x ∃ y (x == y^2)
 
+    All integers equal another integer's square
+
+    Every integer is a perfect square.
+
+    NO! Some integers are perfect squares, but some are not.
+
+    Counterexample: x = 7
 
 
 /////////////////////////
@@ -70,10 +53,22 @@ The sum of two negative integers is negative
 
 Domain: ℤ
 
+    2 quantifiers (both for alls)
 
+    ∀ x ∀ y (x < 0 ^ y < 0 -> x + y < 0)
 
 
 The difference of two positive integers is not necessarily positive
+
+    x - y
+
+    2 quantifiers
+    !(∀...)
+    ∃ (!...)
+
+    ∃ x ∃ y (x > 0 ^ y > 0 ^ x-y <= 0)
+    !(∀ x ∀ y (x > 0 ^ y > 0 -> x-y > 0))
+
 
 
 
@@ -91,9 +86,19 @@ We will prove this soon...but what is the idea?
 suppose our domain is k1 through kn
 
 
-¬(∃ x P(x)) is  equivalent to...?
+¬(∃ x P(x)) is  equivalent to...There does does not exist a Pish x
 
-∀ x (¬P(x)) is equivalent to...?
+    ∃ x P(x) is the same as:
+        P(k1) V P(k2) V ... V P(kn)
+
+    ¬(∃ x P(x)) is the same as:
+        !(P(k1) V P(k2) V ... V P(kn))
+        !P(k1) ^ !P(k2) ^ ... ^ !P(kn)
+
+        ∀ x !P(x)
+
+
+∀ x (¬P(x)) is equivalent to...? All x are not Pish
 
 
 
@@ -107,8 +112,8 @@ How might we read these two statements?
 
 
 
-¬(∀ x P(x)) is equivalent to...?
-∃ x (¬P(x)) is equivalent to...?
+¬(∀ x P(x)) is equivalent to...? not all x are Pish
+∃ x (¬P(x)) is equivalent to...? there is an x that is not Pish
 
 What is the idea of this proof? same idea, but other DeMorgan's law
 
@@ -121,7 +126,6 @@ Predicates:
     in5th(x): student x is in 5th grade
     wonPrize(x): student x won a prize
     friendsWith(x, y): student x is friends with student y
-        (not necessarily reciprocal)
 
 
 1) Express the statement in predicate logic
@@ -133,7 +137,7 @@ or outside a statement with logical connectives
         p → q is equivalent to: ¬p ⋁ q
         ¬(p ⋀ q) is equivalent to: ¬p ⋁ ¬q
         ¬(p ⋁ q) is equivalent to: ¬p ⋀ ¬q
-        ¬(p → q) is equivalent to: ¬(¬p ⋁ q) = p ^ ¬q
+        ¬(p → q) is equivalent to: ¬(¬p ⋁ q) = p ⋀ ¬q
 
 ///
 Domain: students
@@ -145,11 +149,19 @@ Domain: students
 
 A 5th grader won a prize
 
+
 Translation:
+∃ x (in5th(x) ^ wonPrize(x))
+
 
 
 Negation:
+    !(∃ x (in5th(x) ^ wonPrize(x)))
+    ∀ x !(in5th(x) ^ wonPrize(x))
+    ∀ x (!in5th(x) V !wonPrize(x))
+    ∀ x (in5th(x) -> !wonPrize(x))
 
+    All 5th graders didn't win a prize
 
 
 ///
@@ -157,8 +169,15 @@ Negation:
 All prize-winners were 5th graders
 
 Translation:
+    ∀ x (wonPrize(x) -> in5th(x))
 
 Negation:
+    !(∀ x (wonPrize(x) -> in5th(x)))
+    ∃ x !(wonPrize(x) -> in5th(x))
+    ∃ x !(!wonPrize(x) V in5th(x))
+    ∃ x (wonPrize(x) ^ !in5th(x))
+
+    There is a student who won a prize and isn't a 5th grader.
 
 
 
@@ -168,10 +187,22 @@ Negation:
 A 5th grader is friends with all prize winners
 
 Translation:
+    ∃  (a 5th grader)
+    ∀ (prize winners)
 
+    ∃ x ∀ y (in5th(x) ^ wonPrize(y) -> friendsWith(x, y))
 
 Negation:
+    !(∃ x ∀ y (in5th(x) ^ wonPrize(y) -> friendsWith(x, y)))
+    ∀ x !(∀ y (in5th(x) ^ wonPrize(y) -> friendsWith(x, y)))
+    ∀ x ∃ y !(in5th(x) ^ wonPrize(y) -> friendsWith(x, y)))
 
+    ∀ x ∃ y !(in5th(x) ^ wonPrize(y) -> friendsWith(x, y)))
+    ∀ x ∃ y !(!(in5th(x) ^ wonPrize(y)) V friendsWith(x, y)))
+    ∀ x ∃ y ((in5th(x) ^ wonPrize(y)) ^ !friendsWith(x, y)))
+
+    For all 5th graders, there is a prize winner that they're
+    not friends with.
 
 ////////////////////////////////////
 
@@ -201,18 +232,19 @@ Valid or not?
 
 ///
 
-Premises: ∀ x P(x)
-Conclusion: ∃ x P(x)
+Premises: ∀ x P(x) : everyone in my domain is P-ish
+Conclusion: ∃ x P(x): there is someone in domain who is P-ish
 
-Valid or not?
+Valid or not? NO. Doesn't work if the domain is empty.
+
 
 
 /////////////////////////////////
 
 Proofs in predicate logic.
 
-- want to formalize the kind of reasoning from above and
-    from showing equivalence
+- want to formalize the kind of reasoning from above
+
 - want valid inference rules that do NOT depend on the domain
     (there is no way to do the equivalent of a "truth table proof"
         in predicate logic...there are infinitely many domains!)
