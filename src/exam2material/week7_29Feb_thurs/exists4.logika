@@ -1,1 +1,24 @@
 ¬(∃ x (P(x) ^ Q(x))) ⊢ ∀ x (P(x) → ¬Q(x))
+{
+    1. ¬(∃ x (P(x) ^ Q(x)))         premise
+    2. { //use Ai to prove ∀ x (P(x) → ¬Q(x))
+        3. gloria
+        4. { //use ->i to prove P(gloria)-> !Q(gloria)
+            5. P(gloria)            assume
+            6. { //use !i to prove !Q(gloria)
+                7. Q(gloria)        assume
+                8. P(gloria) ^ Q(gloria)    ^i 5 7
+                9. ∃ x (P(x) ^ Q(x))        Ei 8 gloria
+                10. _|_                     !e 9 1
+
+                //need: _|_
+                //get ∃ x (P(x) ^ Q(x)) to contradict with #1
+            }
+            11. !Q(gloria)                  !i 6
+            //need: !Q(gloria)
+        }
+        12. P(gloria) → ¬Q(gloria)          ->i 4
+        //need: P(gloria) → ¬Q(gloria)
+    }
+    13. A x (P(x) -> !Q(x))                 Ai 2
+}

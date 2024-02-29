@@ -11,7 +11,7 @@ HW 5 comments:
 
 4. {x : x ∈ ℤ, x ≥ -5} ∪ {x : x ∈ ℤ, x ≤ 7}
 
-
+all integers
 
 
 
@@ -19,18 +19,26 @@ HW 5 comments:
 5. Suppose A ⋃ B = A for two sets A and B.
 What does that tell us about A and B?
 
-
+    B is empty
+    A = B
+    B is a subset of A
 
 
 6. Suppose A ⋂ B = A for two sets A and B.
 What does that tell us about A and B?
 
+    A = B
+    A is a subset of B
+
 
 
 7 (a). If A ⋃ C = B ⋃ C, must A = B?
+    not necessarily
+
+
 
 7 (b). If A ⋂ C = B ⋂ C, must A = B?
-
+    not necessarily
 
 
 
@@ -43,35 +51,28 @@ Today:
 
 //////////////////////////////////////////////////
 
-Review with for all introduction:
-
-
-(allRev.logika)
-∀ x P(x) |- ∀ y P(y)
-
-
-//////////////////////////////////////////////////
-
 Suppose we have these predicates in the domain of food:
 
-P(x): x is pizza
-Q(x): x has pepperoni
-K(x): x has mushrooms
+P(x): x is a pizza
+B(x): x is a burger
+C(x): x has cheese
 
 Given the premises:
-    All pizza has pepperoni or mushrooms
-
-    All food is pizza
-
+    All food is pizza or burgers
+    All pizza has cheese
+    All burgers have cheese
 
 We want to prove:
-    All food has pepperoni or mushrooms
-
+    All food has cheese
 
 1) Translate each statement to predicate logic
 
+Premises:
+A x (P(x) V B(x))
+A x (P(x) -> C(x))
+A x (B(x) -> C(x))
 
-
+Conclusion: A x C(x)
 
 2) Prove the sequent (in the file allTrans.logika)
 
@@ -187,6 +188,12 @@ x is students
 
     --> what is this argument saying?
 
+¬(∃ x (P(x) ^ Q(x))): there is no student who attends both
+                        K-State and KU
+
+ ∀ x (P(x) → ¬Q(x)): All students who attend K-State don't
+                    attend KU
+
 ////////////////////////////
 
 Proof tactics for predicate logic
@@ -198,19 +205,68 @@ Proof tactics for predicate logic
 
 - look at top-level operator for what you are trying to prove
     trying to prove ∀ x (P(x)) ?
+        Ai, introduce random individual, try to prove P(random)
+
+        {
+            random
+
+            goal: P(random)
+        }
+        A x P(x)            Ai
 
     trying to prove ∃ x (P(x)):
+        see if you have a E x statement as a premise
+            (then use Ee, create an alias for it, try to prove ∃ x (P(x)))
+        see if you have an OR statement as a premise
+            do Ve, see if you can show ∃ x (P(x)) in both cases
+        no other ideas? try pbc
+            {
+                4. !(∃ x (P(x)))            assume
 
-    trying to prove ->
+                //want: _|_
+            }
+
+
+    trying to prove -> subproof with ->i
+            assume LHS, try to get RHS
+
+            {
+                LHS         assume
+
+                //goal: RHS
+            }
+            LHS->RHS        ->i
 
     trying to prove ¬(something)
+        use !i subproof
+
+        {
+            something           assume
+
+            goal: _|_
+        }
+        !something              !i
 
     trying to prove an V
+        can you get one side? use Vi
+
+        do you have an OR statement already? do OR elim.
+
+        do you have a E statement? do Ee
+
+    trying to prove an ^
+        try to prove both statements separately, then ^i
+
+        no luck? try pbc
 
     when you are in a subproof?
+        the goal IN THAT SUBPROOF
 
 
 Unsure what to do?
+    use OR elim if you have an OR
+    use Ee if you have an E
+    if all else fails, try pbc
 
 /////////////////////////////////////////
 
@@ -219,7 +275,11 @@ Proving DeMorgan's laws
 //demorgan1.logika
 ∀ x ¬P(x)       equivalent to       ¬(∃ x P(x))
 
+/////////////////////////////////////
 
+<-- stopped here, will finish on Tuesday
+
+////////////////////////////////////
 
 //demorgan2.logika
 ∃ x ¬P(x)       equivalent to       ¬(∀ x P(x))

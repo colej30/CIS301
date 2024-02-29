@@ -1,1 +1,26 @@
-∀ x (P(x) -> Q(x) V K(x)), ∀ x P(x) |- ∀ x (Q(x) V K(x))
+A x (P(x) V Bur(x)), A x (P(x) -> C(x)), A x (Bur(x) -> C(x)) |- A x C(x)
+{
+    1. A x (P(x) V Bur(x))          premise
+    2. A x (P(x) -> C(x))           premise
+    3. A x (Bur(x) -> C(x))         premise
+
+    //follow pattern (Ai for proving a A statement)
+    4. {
+        5. food
+        6. P(food) V Bur(food)      Ae 1 food
+        7. P(food) -> C(food)       Ae 2 food
+        8. Bur(food) -> C(food)     Ae 3 food
+        9. { //use OR elimination on #6 to get C(food)
+            10. P(food)             assume
+            11. C(food)             ->e 7 10
+        }
+        12. {
+            13. Bur(food)           assume
+            14. C(food)             ->e 8 13
+        }
+        15. C(food)                 Ve 6 9 12
+        //C(food)
+    }
+    16. A x C(x)                    Ai 4
+    //use Ai to conclude A x C(x)
+}

@@ -1,1 +1,21 @@
 ∀ x (Human(x) → Mortal(x)), ∃ x (Human(x)) ⊢ ∃ x (Mortal(x))
+{
+    //all humans are mortal
+    1. ∀ x (Human(x) → Mortal(x))           premise
+
+    //there is a human
+    2. ∃ x (Human(x))                       premise
+
+    //no obvious next step, so try Ee (like OR elim)
+    3. {
+        //I know I have at least one human
+        //let's name that one human bob, temporarily
+        4. bob Human(bob)                   assume
+        5. Human(bob) -> Mortal(bob)        Ae 1 bob
+        6. Mortal(bob)                      ->e 5 4
+        7. E x (Mortal(x))                  Ei 6 bob
+        //want: ∃ x (Mortal(x))
+    }
+    8. E x (Mortal(x))                      Ee 2 3
+    //prove: there is a mortal
+}
