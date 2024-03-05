@@ -1,1 +1,65 @@
 //∃ x ¬P(x)       equivalent to       ¬(∀ x P(x))
+
+//¬(∃ x P(x) ): there does not exist a pizza
+//∀ x ¬P(x) : all foods are not pizza
+
+//P(x) : x is a pizza
+//∃ x ¬P(x)  : there is a food that is not a pizza
+//¬(∀ x P(x)) : not all foods are pizza
+
+
+//direction 1
+/*
+∃ x ¬P(x) |- ¬(∀ x P(x))
+{
+    1. ∃ x ¬P(x)            premise
+    2. { //using !i to prove ¬(∀ x P(x))
+        3. ∀ x P(x)         assume
+        //try Ee on #1
+        4. {
+            5. food ¬P(food)    assume
+            6. P(food)          Ae 3 food
+            7. _|_              !e 6 5
+
+            //goal: _|_
+        }
+        8. _|_                  Ee 1 4
+        //goal: contradiction
+    }
+    9. ¬(∀ x P(x))              !i 2
+}
+*/
+
+//direction 2
+
+¬(∀ x P(x)) |- ∃ x ¬P(x)
+{
+    1. ¬(∀ x P(x))          premise
+    2. { //trying pbc because there is no clear approach
+        3. ¬(∃ x ¬P(x))     assume
+
+        //try to get ∀ x P(x)
+        4. { //use Ai to get ∀ x P(x)
+            5. random
+            6. { //try pbc as a last resort to get P(random)
+                7. !P(random)           assume
+
+                //want: ∃ x ¬P(x) to contradict with #3
+                8. ∃ x ¬P(x)            Ei 7 random
+                9. _|_                  !e 8 3
+
+                //want: _|_
+            }
+            10. P(random)               pbc 6
+            //conclude P(random) using pbc
+
+            //need: P(random)
+        }
+        11. A x P(x)                    Ai 4
+        12. _|_                         !e 11 1
+        //use Ai to conclude A x P(x)
+
+        //goal: _|_
+    }
+    13. ∃ x ¬P(x)                       pbc 2
+}

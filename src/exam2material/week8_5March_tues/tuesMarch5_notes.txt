@@ -12,7 +12,6 @@ No new HW this week
 
 Today:
 - Finish proofs of DeMorgan's laws
-- HW 4, problem 7
 - Exam review
 
 ///////////////////////////////////////
@@ -25,18 +24,14 @@ Prove DeMorgan's second law
 
 ////////////////////////////////////////
 
-Revisit HW 4, problem 7
-
-////////////////////////////////////////
-
 Exam 2:
 - Thursday, March 7 9:30-10:45 Ackert 120
 - Closed notes, closed computers
 - All "open-ended" problems - similar to HW 4-6
 
-- Natural deduction proofs in propositional logic, esp. with negation rules
-    - not elimination, not introduction, bottom elimination, and pbc
-    - still expected to be familiar with all other rules
+- Natural deduction proofs in propositional logic, esp. with
+    negation rules (!e, !i, _|_e, pbc)
+--> still expected to be familiar with all other rules
 
 Sets, including:
     - set builder notation
@@ -49,13 +44,22 @@ Predicate logic statements, including:
     - interpreting predicate logic statements in English
     - translating English statements to predicate logic
     - evaluating predicate logic statements in a domain
-    - working with predicate logic statements involving sets of numbers
+    - working with predicate logic statements involving sets
+        of numbers
     - DeMorgan's laws
     - negating predicate logic statements
 
-- Natural deduction proofs in predicate logic (deduction rules with quantifiers)
-
+- Natural deduction proofs in predicate logic (deduction rules
+    with quantifiers)
 - Using natural deduction to prove two statements are equivalent
+
+
+--> how to prepare?
+    get out paper
+    work through old homework problems
+    work through old lecture example
+
+--> homework solutions
 
 ///////////////////////////////////////
 
