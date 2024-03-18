@@ -1,0 +1,6 @@
+∀ x (∀ y (C(x) → D(y))), ∃ x C(x) ⊢ ∀ y D(y)
+{
+    1. ∀ x (∀ y (C(x) → D(y)))          premise
+    2. ∃ x C(x)                         premise
+
+}
