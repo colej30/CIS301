@@ -57,6 +57,10 @@ Examples:
 
 //////////////////////////////
 
+<-- stopped here, will continue on Thursday
+
+//////////////////////////////
+
 Soundness and completeness of predicate logic.
 
 
