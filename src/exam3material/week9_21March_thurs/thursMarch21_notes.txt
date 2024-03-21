@@ -9,20 +9,24 @@ Today:
 Soundness and completeness of predicate logic.
 
 
-Soundness: definition?
+Soundness: definition? everything we can prove (in natural deduction)
+    is actually true
 
-    propositional:
+    propositional: yes (anything I can prove with natural deduction
+        is also true in truth tables)
 
-    predicate logic:
+    predicate logic: yes
 
 
 
 
-Completeness: definition?
+Completeness: definition? we can prove everything that is true
 
-    propositional:
+    propositional: yes (anything that is true in truth tables
+        can also be proved with natural deduction)
 
-    predicate logic:
+    predicate logic: no (different domains might have different
+        arguments that are true vs false)
 
 
 
@@ -37,10 +41,10 @@ Same argument might be VALID in one domain and INVALID in another
 Domain with integers with operations like +
 
 
-All integers? 2 + 3 = ?
+All integers? 2 + 3 = 5
 
 
-Subset (0,1,2,3,4) of integers. 2 + 3 = ?
+Subset (0,1,2,3,4) of integers. 2 + 3 = 0
 
 
 
@@ -61,6 +65,7 @@ that cannot be proved.
 Mathematical induction.
 
 Tool for proving something involving natural numbers
+    1 and up
 
 Base case: prove the statement is true for the first element in
     our domain.
@@ -84,11 +89,11 @@ Let P(n) be the claim that for any positive integer n:
     1 + 2 + ... + n = n*(n+1)/2
 
 
-LHS(n) = ?
-RHS(n) = ?
+LHS(n) = 1 + 2 + ... + n
+RHS(n) = n*(n+1)/2
 
 
-So to show P(n) holds, we can show that... ?
+So to show P(n) holds, we can show that... LHS(n) = RHS(n)
 
 
 
@@ -118,10 +123,25 @@ RHS(3):
 Proof by induction.
 
 
-Base case:
+Base case: We must that P(n) holds for the smallest possible n,
+that is, we must prove P(1). We have that LHS(1) = 1 and
+the RHS(1) = 1(1+1)/2 = 1. Since LHS(1) = RHS(1), then P(1) holds.
 
-Inductive step:
+Inductive step: We assume the inductive hypothesis -- that
+P(k) holds for some fixed positive integer k. We must that
+P(k+1) holds. If P(k) holds, then LHS(k) = RHS(k). To show
+P(k+1), we must show that LHS(k+1) = RHS(k+1).
 
+We have that:
+    LHS(k+1) = 1 + 2 + ... + k + (k+1)  //plug in k+1 to LHS
+            = LHS(k) + (k+1) //1+2+...+k is LHS(k)
+            = RHS(k) + (k+1) //LHS(k) = RHS(k) from inductive hypothesis
+            = k(k+1)/2 + (k+1) //RHS(k) = k(k+1)/2
+            = (k(k+1) + 2(k+1))/2   //put over common denominator
+            = (k+1)(k+2)/2          //factor out k+1
+            = RHS(k+1)
+
+Thus LHS(k+1) = RHS(k+1), and so P(k+1) holds.
 
 
 
@@ -131,24 +151,19 @@ Inductive step:
 Do you think induction can be used to prove properties for
     ALL integers?
 
-
+no - need a starting smallest value
 
 
 /////////////////////////////////
 
 Example: Prove that the sum of the first n odd numbers is n^2.
 
-
 Let P(n) be the claim that 1 + 3 + 5 + ... + (2n−1) = n^2.
 
-LHS(n) =
-RHS(n) =
+LHS(n) = 1 + 3 + ... + nth odd number
 
-Try it out first.
-
-n = 1?
-n = 2?
-n = 3?
+LHS(n) = 1 + 3 + ... + (2n-1)
+RHS(n) = n^2
 
 
 How can we show that P(n) holds for some positive integer n?
@@ -160,14 +175,28 @@ How can we show that P(n) holds for some positive integer n?
 
 Proof by induction.
 
-Base case:
+Base case: We must prove that P(1) holds. We have that
+LHS(1) = 1 and RHS(1) = 1^2 = 1. Thus LHS(1) = RHS(1) and
+so P(1) holds.
 
 
 
-Inductive step. Assume ... We must show that ...
+Inductive step. We assume the inductive hypothesis -- that
+P(k) holds for some fixed positive integer. We must show that
+P(k+1) holds. If P(k) holds, then LHS(k) = RHS(k). To show
+P(k+1) holds, we must show that LHS(k+1) = RHS(k+1).
 
+We have that:
+    LHS(k+1) = 1 + 3 + ... + (2k-1)  + 2(k+1) - 1  //sum of first k+1 odds
+              = LHS(k) +  2(k+1) - 1   //1 + 3 + ... + (2k-1) = LHS(k)
+              = RHS(k) +  2(k+1) - 1  //LHS(k) = RHS(k) from inductive hypothesis
+              = k^2 + 2(k+1) - 1     //RHS(k) = k^2
+              = k^2 + 2k + 2 - 1
+              = k^2 + 2k + 1
+              = (k+1)^2
+              = RHS(k+1)
 
-/////////////////////////////////
+Thus LHS(k+1) = RHS(k+1) so P(k+1) holds.
 
 /////////////////////////////////
 
@@ -179,8 +208,33 @@ Let P(n) be the claim that 3^n - 1 is even for all natural numbers n.
 
 n = 3?
 
+3^3 - 1 = 27-1 = 26, which is even
 
-what does "even" mean?
+
+what does "even" mean?  2k, where k is an integer
+
+even + even is an even number
+
+
+
+Base case. We must show that P(1) holds, that is, that
+3^1 - 1 is even. We have that 3^1 - 1 = 2, which is even.
+The base case holds.
+
+Inductive step. We assume the inductive hypothesis -- that
+P(k) holds for some fixed positive integer k. We must show that
+P(k+1) holds. If P(k) holds, then 3^k - 1 is even. To show that
+P(k+1) holds, we must show that 3^(k+1) - 1 is also even.
+
+We have that:
+
+    3^(k+1) - 1 = 3*3^k - 1
+                = 3*(3^k - 1) + 2   //3*(3^k - 1) = 3*3^k - 3, so we add 2 to get to the 3*3^k-1 above
+
+We know 3^k - 1 is even by the inductive hypothesis. An even
+number times another number (3 in our case) is also even, and
+an even number (3*(3^k - 1)) plus another even number (2) is
+still even as well. Thus 3^(k+1) - 1 is even, so P(k+1) holds.
 
 //////////////////////////////////
 
@@ -189,8 +243,29 @@ Example: use induction to prove that for any integer n >= 4:
     n! > 2^n
 
 
-n = 4?
+n = 5? 5! = 120, 2^5 =32
 
+
+Let P(n) be the claim that for any integer n >=4, n! > 2^n.
+
+
+Base case. We must show that P(4) holds, that is that 4! > 2^4.
+We have that 4! = 24 and 2^4 = 16. Because 24 > 16, the base
+case holds.
+
+Inductive step. We assume the inductive hypothesis -- that
+P(k) holds for some fixed integer k >= 4. We must show that P(k+1)
+holds. If P(k) holds, then k! > 2^k. We must show that
+(k+1)! > 2^(k+1).
+
+We have that:
+
+        (k+1)! = (k+1)*k!
+                > (k+1)*2^k
+                > 2*2^k        //k+1 is definitely bigger than 2 as k is >=4
+                = 2^(k+1)
+
+ Thus (k+1)! > 2^(k+1), so P(k+1) holds.
 
 /////////////////////////////////
 
