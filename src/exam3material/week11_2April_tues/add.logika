@@ -1,0 +1,16 @@
+import org.sireum.logika._
+
+val x: Z = 2
+
+//what can we put in a logic block here? Do we need this step?
+    //no, could have just said x == 2 in the block after setting y
+
+
+val y: Z = x + 2
+
+
+
+//what can we put in a logic block here?
+
+//1) assert y is 4
+//2) assert y is 4 AND x is still 2
