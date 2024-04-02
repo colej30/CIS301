@@ -7,16 +7,38 @@ var y: Z = readInt()
 val xOrig: Z = x
 val yOrig: Z = y
 
+//x = 7, y = 4
+
 //want to swap x and y
-x = x + y
+x = x + y           //x = 11, y = 4
 
 //need a logic block after each variable mutation
+l"""{
+    1. xOrig == x_old       premise //from assignment
+    2. yOrig == y           premise //from assignment
+    3. x == x_old + y       premise //from assignment
+    4. x == xOrig + yOrig   algebra 3 1 2
+}"""
 
 
-y = x - y
+y = x - y            //y=7, x = 11
+
+l"""{
+    1. y == x - y_old       premise //from assignment
+    2. x == xOrig + yOrig   premise //from previous block
+    3. yOrig == y_old       premise //from previous block
+    4. y == xOrig + yOrig - yOrig   algebra 1 2 3
+    5. y == xOrig           algebra 4
+
+    //good -- have current x and current y without any olds
+}"""
+
+assert(y == xOrig)
+
+//STOPPED HERE - will continue on Thurs
 
 
-
-x = x - y
+x = x - y           //x=4, y=7
 
 //what do we want to claim we did?
+assert(x == yOrig & y == xOrig)

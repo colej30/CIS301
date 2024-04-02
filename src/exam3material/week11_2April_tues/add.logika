@@ -8,6 +8,15 @@ val x: Z = 2
 
 val y: Z = x + 2
 
+l"""{
+    1. y == x + 2           premise
+    2. x == 2               premise
+    3. y == 4               algebra 2 1
+    4. y == 4 ^ x == 2      ^i 3 2
+}"""
+
+
+assert(y == 4 & x == 2)
 
 
 //what can we put in a logic block here?
