@@ -8,10 +8,39 @@ var num: Z = readInt("Enter a positive even number: ")
 //what assumptions are we making about user inputs?
 //how to put those in assumes?
 
+assume(num > 0) //assume positive
+
+l"""{
+    1. num > 0          premise
+    2. 2 > 0            algebra   //needed for modulo
+    3. num >= 0         algebra 1 //needed for modulo
+    //numerator >= 0
+}"""
+
+assume(num % 2 == 0)
+
 num = num + 1
 
+l"""{
+    1. num == num_old + 1           premise //from assignment
+    2. num_old > 0                  premise //from assume
+    3. num_old % 2 == 0             premise //from assume
+    4. num >= 0                     algebra 1 2 //for next modulo
+    5. num % 2 == 1                 algebra 3 1
+}"""
+
 //assert that num is now odd
+assert(num % 2 == 1)
 
 num = num * 2
 
+l"""{
+    1. num == num_old * 2           premise //from assignment
+    2. num_old >= 0                 premise //from previous block
+    3. num >= 0                     algebra 1 2 //needed for %
+    4. num % 2 == 0                 algebra 1
+}"""
+
 //assert that num is now even
+
+assert(num % 2 == 0)

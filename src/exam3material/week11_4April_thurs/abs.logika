@@ -6,8 +6,48 @@ val numOrig : Z = num
 //FIRST: write the code that updates num to be the
 //absolute value of the input
 
+if (num < 0) {
+    num = num * -1
+
+    l"""{
+        1. num == num_old * -1  premise //from assignment
+        2. num_old < 0          premise //from condition
+        3. numOrig == num_old   premise //from earlier assignment
+        4. num >= 0             algebra 1 2 //for assert
+        5. num == numOrig*-1    subst2 3 1
+    }"""
+} else {
+    //no code, just for verification
+
+    l"""{
+        1. !(num < 0)           premise //condition is false
+        2. num >= 0             algebra 1 //for assert
+        3. numOrig == num       premise //from earlier assignment
+        4. num == numOrig       algebra 3
+    }"""
+}
+
+l"""{
+    1. num >= 0                                 premise //from both branches
+    2. num == numOrig*-1 V num == numOrig       premise
+    3. {
+        4. num == numOrig*-1                    assume //LHS
+        5. num == numOrig V num == numOrig*-1   Vi2 4
+    }
+    6. {
+        7. num == numOrig                       assume //RHS
+        8. num == numOrig V num == numOrig*-1   Vi1 7
+    }
+    9. num == numOrig V num == numOrig*-1       Ve 2 3 6
+
+    //a V b |- b V a
+}"""
+
 
 
 //be sure to include an "else" branch (even if empty) for the verification
 
 //How can we assert that num is the absolute value of the input?
+
+assert (num >= 0)
+assert (num == numOrig | num == numOrig*-1)

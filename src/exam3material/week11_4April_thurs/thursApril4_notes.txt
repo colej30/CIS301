@@ -17,23 +17,31 @@ Finish swap.logika example
 Programs with division.
 
 
-Recall: what is the only numerical type in our toy programs?
+Recall: what is the only numerical type in our toy programs? int (Z)
 
 --> what does that mean about division?
 
 
-
+    7/4 is 1
 
 
 --> what do you think we'll need to demonstrate before using division?
 
-
+make sure that denominator isn't 0
 
 //what should go here?
 
+l"""{
+    1. b != 0           justification
+}"""
 
+x = a / b
 
-x = a / 2
+l"""{
+    1. 2 != 0           algebra
+}"""
+
+y = a / 2
 
 
 
@@ -43,22 +51,28 @@ x = a / 2
 val a: Z = num / 3
 val b: Z = num*3
 
-suppose num is 16, then a would be ?
+suppose num is 16, then a would be ? 5
 
-b would be?
+b would be? 48
 
 l"""{
     1. a == num/3               premise
     2. a*3 == num               algebra 1           //is this true?
+                                            //NO! a*3 = 15 and
+                                            //num is 16
 
     3. b == num*3               premise
     4. b/3 == num               algebra 3           //is this true?
-}"""
+}"""                                    //YES! b is initialized to
+                                        //be a multiple of 3,
+                                        //so this is fine
 
 
 /////////////////////////////
 
 Programs with modulo.
+
+7 % 4 = 3
 
 
 To keep things easier to think about, modulo is only defined for:
@@ -70,10 +84,16 @@ numerator % denominator
 
 --> what does that mean we'll need to demonstrate before using modulo?
 
-
+numerator >= 0
+denominator > 0
 
 
 //what should go here?
+
+l"""{
+    1. a >= 0           justification
+    2. 2 > 0            algebra
+}"""
 
 x = a % 2
 
@@ -86,11 +106,13 @@ x = a % 2
 val test: Z = num/3
 
 //maybe num is 16
-//test = ??
+//test = ?? 5
 
 l"""{
     1. test == num/3                premise
     2. num == 3*test + num%3        algebra 1   //is this true?
+                                    //YES! I am accounting for the
+                                     //remainder
 }"""
 
 --> and this one:
@@ -99,6 +121,8 @@ l"""{
     1. x % 2 == 0                   (some justification)
     2. div = x / 2                  (some justification)
     3. 2*div == x                   algebra 1 2    //is this true?
+                                        //YES! We've shown x
+                                        //is even
 }"""
 
 
@@ -172,8 +196,8 @@ l"""{
 
 if (C) {
     l"""{
-        1. P            premise //why?
-        2. C            premise //why?
+        1. P            premise //why? P is still true, nothing changed
+        2. C            premise //why? condition is true
     }"""
 
     claims
@@ -185,8 +209,8 @@ if (C) {
 
 } else {
     l"""{
-        1. P            premise //why?
-        2. !(C)         premise //why?
+        1. P            premise //why? P is still true
+        2. !(C)         premise //why? condition is not true
     }"""
 
     claims
@@ -198,8 +222,8 @@ if (C) {
 }
 
 l"""{
-    1. Q                premise //why?
-    2. A V B            premise //why?
+    1. Q                premise //why? reached in both if and else
+    2. A V B            premise //why? A from if, B from else
 }"""
 
 /////////////////////////////
@@ -224,6 +248,54 @@ Verifying programs with nested conditionals
 - same idea as non-nested
 - include "summary" logic block after each inner if/else
 
+
+if (cond1) {
+    if (cond2) {
+        //cond1
+        //cond2
+
+        //Q
+
+        //show claim
+    } else {
+        //cond1
+        // !(cond2)
+
+        //P
+
+        //show claim
+    }
+
+    //Q V P
+    //claim
+} else {
+    if (cond3) {
+        //!(cond1)
+        //cond3
+
+        //P
+
+        //show claim
+    } else {
+        //!(cond1)
+        //!(cond3)
+
+        //Q
+
+        //claim
+    }
+    //P V Q
+    //claim
+}
+
+//claim
+//(Q V P) V (P V Q)
+
+assert(P | Q)
+
+///////////////////////////////
+
+<---- stopped here, will finish on Tuesday
 
 ///////////////////////////////
 

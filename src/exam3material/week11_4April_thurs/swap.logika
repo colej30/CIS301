@@ -40,5 +40,16 @@ assert(y == xOrig)
 
 x = x - y           //x=4, y=7
 
+l"""{
+    1. y == xOrig               premise
+    2. x == x_old - y           premise
+    3. x_old == xOrig + yOrig   premise
+    4. x_old == x + y           algebra 2
+    5. x + y == xOrig + yOrig   subst1 4 3
+    6. x + y == y + yOrig       subst2 1 5
+    7. x == yOrig               algebra 6
+    8. x == yOrig ^ y == xOrig  ^i 7 1
+}"""
+
 //what do we want to claim we did?
 assert(x == yOrig & y == xOrig)
