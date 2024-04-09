@@ -17,7 +17,12 @@ if (a >= b) {
         //want: max is a, and max >= a, b, c
         l"""{
             //FILL IN
-
+            1. max == a             premise
+            2. a >= b               premise //outer if
+            3. a >= c               premise //inner if
+            4. max >= a             algebra 1 //needed for 1st assert
+            5. max >= b             algebra 1 2 //needed for 2nd assert
+            6. max >= c             algebra 1 3 //needed for 3rd assert
         }"""
     } else {
         max = c
@@ -26,7 +31,13 @@ if (a >= b) {
         //want: max is c, and max >= a, b, c
         l"""{
             //FILL IN
-
+            1. max == c             premise //from assignment
+            2. a >= b               premise //outer if
+            3. !(a >= c)            premise //inner if is false
+            4. a < c                algebra 3
+            5. max >= c             algebra 1 //needed for 3rd assert
+            6. max >= a             algebra 1 4 //needed for 1st assert
+            7. max >= b             algebra 1 2 4 //needed for 2nd assert
         }"""
     }
 
@@ -35,8 +46,23 @@ if (a >= b) {
         //FILL IN
         //what can we state as premises?
         //how do we get max == a V max == b V max == c?
+        1. max == a V max == c      premise //LHS from inner if,
+                                            //RHS from inner else
 
+        2. {
+            3. max == a                         assume
+            4. max == a V max == b              Vi1 3
+            5. max == a V max == b V max == c   Vi1 4
+        }
+        6. {
+            7. max == c                         assume
+            8. max == a V max == b V max == c   Vi2 7
+        }
+        9. max == a V max == b V max == c       Ve 1 2 6
 
+        10. max >= a                        premise //true in both
+        11. max >= b                        premise //true in both
+        12. max >= c                        premise //true in both
     }"""
 } else {
     //what do we know is NOT the max?
