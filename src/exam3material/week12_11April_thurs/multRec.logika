@@ -1,7 +1,5 @@
 import org.sireum.logika._
 
-//will do this example on Thurs
-
 //want to return x * y, through repeated addition
 //recursively compute x + x + ... + x (y times)
 def mult(x: Z, y: Z): Z = {

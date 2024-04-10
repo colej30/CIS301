@@ -1,0 +1,46 @@
+import org.sireum.logika._
+
+l"""{
+    fact
+        def factDef(n: Z): Z
+            fOne. factDef(1) == 1
+            fBig.  ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x
+}"""
+
+//want to return n!
+//5! = 5 * 4 * 3 * 2 * 1
+def factorial(n: Z): Z = {
+    //function contract
+    //what is result?
+
+    var product: Z = 1
+    var count: Z = 1
+
+    //prove invariant holds here
+    //need: product == factDef(count)
+    l"""{
+        1. product == 1         premise //variable assignment
+        2. count == 1           premise //variable assignment
+        3. factDef(1) == 1      fact fOne //use proof definition
+        4. product == factDef(count)    algebra 1 2 3
+        5. count >= 1           algebra 2 //prove second invariant
+    }"""
+
+    while (count != n) {
+
+        //after count iterations, what is product?
+
+        count = count + 1
+        product = product * count
+    }
+
+    return product
+}
+
+/////////// Test code //////////////////
+
+
+val test: Z = 3
+val answer: Z = factorial(test)
+
+assert(answer == 6)

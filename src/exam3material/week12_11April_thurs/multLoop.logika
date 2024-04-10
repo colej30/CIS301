@@ -1,0 +1,26 @@
+import org.sireum.logika._
+
+//finding x*y by doing x + x + x + ... + x (y times)
+def mult(x: Z, y: Z): Z = {
+
+    var total: Z = 0
+    var i: Z = 0
+
+    while (i != y) {
+        //what should the loop invariant be?
+
+        total = total + x
+        i = i + 1
+    }
+
+    return total
+}
+
+//////////// test code /////////
+
+val a: Z = 5
+val b: Z = 4
+
+//call mult to get the product between a and b
+
+//what do we want to assert that it is?
