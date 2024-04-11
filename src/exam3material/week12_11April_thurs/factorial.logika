@@ -11,24 +11,24 @@ l"""{
 //5! = 5 * 4 * 3 * 2 * 1
 def factorial(n: Z): Z = {
     //function contract
-    //what is result?
+    //what is result? result == n!
+    //n* (n-1) * (n-2) * ..- * 2 * 1
+
+    l"""{
+        requires ???
+        ensures result == factDef(n)
+    }"""
 
     var product: Z = 1
     var count: Z = 1
 
     //prove invariant holds here
     //need: product == factDef(count)
-    l"""{
-        1. product == 1         premise //variable assignment
-        2. count == 1           premise //variable assignment
-        3. factDef(1) == 1      fact fOne //use proof definition
-        4. product == factDef(count)    algebra 1 2 3
-        5. count >= 1           algebra 2 //prove second invariant
-    }"""
 
     while (count != n) {
 
         //after count iterations, what is product?
+        //invariant product == factDef(count)
 
         count = count + 1
         product = product * count

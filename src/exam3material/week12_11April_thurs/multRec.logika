@@ -3,17 +3,60 @@ import org.sireum.logika._
 //want to return x * y, through repeated addition
 //recursively compute x + x + ... + x (y times)
 def mult(x: Z, y: Z): Z = {
-    //what goes here?
+    //what goes here? function contract
+    l"""{
+        requires y >= 0
+        ensures result == x*y
+    }"""
 
     //we want answer to hold our calculation
     var answer: Z = 0
 
     if (y == 0) {
         answer = 0
+
+        //must have logic block here
+        //must show answer == x*y
+
+        l"""{
+            1. y == 0           premise //condition is true
+            2. answer == 0      premise //from assignment
+            3. answer == x*y    algebra 1 2 //shows postcondition
+                                        //for if branch
+        }"""
+
     } else {
-        var temp: Z = mult(x, y-1)
+        //before making a function call, must
+        //prove the preconditions
+        //need: y-1 >= 0
+
+        l"""{
+            1. !(y == 0)        premise //in the else, condition false
+            2. y >= 0           premise //my precondition is true
+            3. y-1 >= 0         algebra 1 2 //satisifies precondition
+                                        //of recursive call
+        }"""
+
+        var temp: Z = mult(x, y-1)  //result == x*y
         answer = x + temp
+
+        l"""{
+            1. temp == x*(y-1)          premise //from postcondition
+            2. answer == x + temp       premise //from assignment
+            3. answer == x + x*(y-1)    subst1 1 2
+            4. answer == x + x*y - x    algebra 3
+            5. answer == x*y            algebra 4
+        }"""
+
+        //show answer == x*y
     }
+
+    //we must prove the postcondition
+    //answer == x*y
+
+    l"""{
+        1. answer == x*y                premise //true in both branches
+    }"""
 
     return answer
 }
@@ -23,6 +66,21 @@ def mult(x: Z, y: Z): Z = {
 val a: Z = 5
 val b: Z = 4
 
+//Step 1: prove the precondition
+
+l"""{
+    1. b == 4               premise
+    2. b >= 0               algebra 1 //proves precondition
+}"""
+
 var ans: Z = mult(a, b)
 
+l"""{
+    1. ans == a*b           premise //from postcondition
+    2. a == 5               premise
+    3. b == 4               premise
+    4. ans == 20            algebra 1 2 3
+}"""
+
 //what do we want to assert that it is?
+assert(ans == 20)

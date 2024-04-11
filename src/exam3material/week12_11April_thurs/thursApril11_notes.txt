@@ -15,25 +15,37 @@ Today:
 Reminder:
 
 - What is a function contract?
+    precondition (requires)
+    postcondition (ensures)
 
 
 - What does "requires" mean?
+    requirements that the function has in order to work correctly
+    and in order to satisfy its postcondition
 
 
 - What does "ensures" mean?
+    things the function is promising will happen as a result
+    of calling it
+
 
 
 - What can the function do with the precondition?
+    list precondition as a premise
 
 
 - What must the function do with the postcondition?
+    prove the postcondition just before returning
 
 
 - What must the calling code do with the precondition?
+    must prove the precondition before a function call
 
 
 - What can the calling code do with the postcondition?
 
+    function(something)
+    <--- I can list the function's postcondition as a premise here
 
 
 /////////////////////////
@@ -47,14 +59,13 @@ Example (mult_recursive.logika):
 
 /////////////////////////////
 
-/////////////////////////////
-
 Validating loops.
 
 while (condition) {
     statements
 }
 
+<-- number of iterations: 0 or infinity
 
 We want to be able to make claims about our program after loop
 is done
@@ -81,21 +92,24 @@ Steps to proving correctness of a loop:
 1) Prove the invariant is true before the loop begins
 
     (what is this like in mathematical induction?)
-
+    base case
 
 
 2) Assume the invariant is true at the beginning of an iteration.
     Prove the invariant still holds at the end of the iteration.
 
     (what is this like in mathematical induction?)
-
+    inductive step
 
 /////////////////////////
 
 When loop ends, you know two things:
     1) About the invariant?
+        true
+
 
     2) About the loop condition?
+        false
 
 
 If your loop is in a function, you can use those two pieces
@@ -107,22 +121,28 @@ to prove the postcondition of the function.
 
 Loop invariant block: just inside the loop
 
+
+//prove invariants here
 while (condition) {
     l"""{
         invariant (list the invariant[s])
         modifies (list all variables modified in the loop)
     }"""
 
+    //use invariants as a premise
+
     code for the loop
+
+    //prove the invariants still hold
 }
 
 
 /////////////////////////
 
-Example: see code for multiplication with repeated additional using a loop
-(mult_loop.logika)
+Example: see code for multiplication with repeated addition
+    using a loop (mult_loop.logika)
 
---> can we use the function contract from the recursive implementation?
+--> can we use the function contract from recursive implementation?
 
     l"""{
         requires y >= 0
@@ -156,8 +176,9 @@ Answer: Logika facts
 
 Recursive definition of factorial:
 
-factDef(1) = 1
-factDef(n) = n*factDef(n-1) , if n > 1
+factDef(1) = 1          //base case, 1! = 1
+factDef(n) = n*factDef(n-1) , if n > 1  //recursive step
+                                        //n! = n*(n-1)!
 
 
 
@@ -173,6 +194,10 @@ l"""{
 
 Example: what is factDef(3)?
 
+factDef(3) == factDef(2)*3
+    factDef(2) == factDef(1)*2
+        factDef(1) == 1
+
 
 
 
@@ -185,6 +210,10 @@ l"""{
     1. factDef(1) == 1                                  fact fOne
     2. ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x  fact fBig
 }"""
+
+/////////////////////////////////
+
+<----- stopped here, will finish on Tuesday
 
 /////////////////////////////////
 
