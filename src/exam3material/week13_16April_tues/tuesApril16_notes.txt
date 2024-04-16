@@ -3,6 +3,11 @@ HW 10 due tonight
 Exam 3 is Thursday, April 18
     (we'll review today)
 
+Rachel is holding an exam 3 study session Wednesday, April 17
+    12-2 pm
+
+Final exam: Thursday, May 9 2:00-3:50
+
 There will be one more HW assignment, posted next week
 
 //////////////////////////////
@@ -53,13 +58,29 @@ Exam 3:
 
 Topics:
 - Predicate logic proofs with nested quantifiers
-- Recursive definitions
+- Recursive definitions (functions, sets)
 - Proof techniques, including:
     - Mathematical induction
     - Direct (conditional) proofs
+        (know the "formal" definitions of even and odd)
+
     - Contrapositive proofs
+        p->q
+
+        Assume !q try to get !p
+
     - Proof by contradiction
+        p->q assume p, assume for the sake of contradiction !q.
+            After getting _|_, conclude q
+        statement: assume for the sake of contradiction !statement.
+            After getting _|_, conclude statement.
+
     - Proofs on sets
+        A is a subset of set B
+            Let x be an element in A. (write what this means)
+            Show that x is an element in B by expressing x
+                using B's notation
+
 - Programming logic, including:
     - Assumes and asserts
     - The subst rules and the algebra rule
