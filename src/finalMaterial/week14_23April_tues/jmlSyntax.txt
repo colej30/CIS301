@@ -1,5 +1,15 @@
-//@requires precondition;
-//@ensures postcondition;
+// @requires precondition;
+// @ensures postcondition;
+public returnType someMethod(someParameters) {
+
+}
+
+    - OR -
+
+/*@
+    requires precondition;
+    ensures postcondition;
+*/
 public returnType someMethod(someParameters) {
 
 }
@@ -40,10 +50,12 @@ These are handy for making statements about arrays:
 
 Basic example:
 
-//@requires adults >= 0 && kids >= 0;
-//@ensures \result == adults*50 + kids*30;
-//@ensures \result >= 0;
-public static int ticketCost(int x) {
+/*@
+    requires adults >= 0 && kids >= 0;
+    ensures \result == adults*50 + kids*30;
+    ensures \result >= 0;
+*/
+public static int ticketCost(int adults, int kids) {
     return adults*50 + kids*30;
 }
 
@@ -51,8 +63,8 @@ public static int ticketCost(int x) {
 
 Array example:
 
-//@requires nums != null;
-//@ensures (\forall int k; 0 <= k && k < nums.length; nums[k] == \old(nums[k]) * 2));
+// @requires nums != null;
+// @ensures (\forall int k; 0 <= k && k < nums.length; nums[k] == \old(nums[k]) * 2));
 public static void doubleEach(int[] nums) {
     for (int i = 0; i < nums.length; i++) {
         nums[i] = nums[i] * 2;

@@ -56,10 +56,13 @@ Binary search bug.
 
 
 --> what's the problem? how to fix?
+    integer overflow
+
+    int mid = low + (high-low)/2
 
 
-
---> how long was it there?
+--> how long was it there? original C++ (in 80s)
+    in Java until 2002
 
 
 
@@ -108,6 +111,7 @@ Whose job is it to check preconditions?
     --> ...can we enforce in practice?
     --> what to do if preconditions not met?
 
+    throw an exception in the function if the precondition is not met
 
 What should a function do if its preconditions are not met?
     - return a dummy value?
@@ -116,6 +120,7 @@ What should a function do if its preconditions are not met?
 
 How to enforce postconditions?
 
+    assert our postcondition before returning
 
 
 
@@ -127,9 +132,9 @@ How to enforce postconditions?
 
 IntelliJML - does some JML syntax checking
 
-https://gitlab.utwente.nl/fmt/intellijml/-/commit/76e818ab449775ab93e4d14b460b1cf8580ea406
+https://gitlab.utwente.nl/fmt/intellijml/-/releases
 
-Download the IntelliJ-1.1.5.jar file
+Download the IntelliJ-1.1.6.jar file
 
 In IntelliJ, File->Settings->Plugins, click the gear, select
     "Load Plugin from Disk", find the jar file
@@ -149,6 +154,10 @@ JMLExample.java
 
 
 ////////////////////////////
+
+<--- stopped here, will finish on Thursday
+
+///////////////////////////
 
 JUnit tests
 
