@@ -68,7 +68,7 @@ public class JMLExample {
 
         //what should we do here?
 
-        assert product == x * y;
+        assert product == x*y;
 
         return product;
     }

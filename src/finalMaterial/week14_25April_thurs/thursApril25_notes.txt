@@ -33,7 +33,13 @@ What are we doing with our function specifications?
 - in the function itself:
     - what to do with precondition?
 
+        at beginning of function, if precondition NOT met
+            throw an exception
+
     - what to do with postcondition?
+
+        add assert statement before returning to check postcondition
+
 
 
 --> we will also add unit tests to mostly serve as checks that we're
@@ -118,7 +124,14 @@ Example: Write a method that returns the min element in an array
 
 Example: write specification for indexOf method:
 
-
+/*@
+    requires arr != null;
+    ensures (\result == -1 <==> \forall(int k; k >= 0 && k < arr.length; arr[k] != num));
+    ensures (\result >= 0 && \result < arr.length <==>
+                (\exists(int k; k >= 0 && k < arr.length; arr[k] == num && \result == k));
+    ensures (\result >= 0 && \result < arr.length <==>
+                (\forall(int k; k >= 0 && k < \result; arr[k] != num );
+*/
 public static int indexOf(int[] arr, int num) {
     for (int i = 0; i < arr.length; i++) {
         if (arr[i] == num) return i;
@@ -158,6 +171,10 @@ Example: bank account
 
 --> what should our global invariants be?
 
+balance >= 0
+elite == (balance >= 1000000);
+
+
 //////////////////////////////////////
 
 Global invariants in JML:
@@ -168,6 +185,10 @@ Global invariants in JML:
 
 
 --> what can we use instead of a private field?
+
+
+
+
 
 
 ///////////////////////////////////////
@@ -197,6 +218,10 @@ Finishing Account class:
 
 --> how should we write specifications?
 
+
+////////////////////////////////////////
+
+<----- stopped here, will finish on Tuesday
 
 ////////////////////////////////////////
 
