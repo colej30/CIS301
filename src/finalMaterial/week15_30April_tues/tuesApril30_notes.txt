@@ -4,29 +4,50 @@ Final exam: Thursday, May 9 2:00-3:50 pm
 
 
 HW 11 (last assignment) due tonight
+    - need JDK
+    - *can* get IntelliJML
+    - different libraries JUnit
     - don't worry about warnings that asserts are always true
+
 
 Fan behavior:
     - has speed (0-5), isOn (T/F), rotateOn (T/F)
     - can only change speed one level at a time
     - fan can only rotate at speed 3 or higher
     - changing speed CAN turn the fan on/off
-    - changing the speed CANNOT turn the rotate off
+    - changing the speed CANNOT turn rotate off
 
-Current state: fan on, speed 3, rotate on. Can we call setSpeed(2)?
 
-Current state: fan off, speed 0, rotate off. Can we call setSpeed(1)?
+    Fan on, speed 3, rotate on. Can we call setSpeed(2)?
+        NO!
 
-Current state: fan on, speed 2, rotate off. Can we call setSpeed(0)?
 
-Current state: fan on, speed 3, rotate on. Can we call setSpeed(4)?
+    Fan off, speed 0, rotate off. Can we call setSpeed(1)?
+        YES! (and should turn fan to on)
 
-Current state: fan on, speed 3, rotate on. Can we call makeRotate()?
 
+    Fan on, speed 2, rotate off. Can we call setSpeed(0)?
+        NO! (can't change speed by more than 1)
+
+
+    Fan on, speed 3, rotate on. Can we call setSpeed(4)?
+        (YES! and rotate stays on)
+
+
+    Fan on, speed 3, rotate on. Can we call makeRotate()?
+        NO! (because the fan is already rotating)
+
+    Fan on ,speed 5, rotate off. Can we call setSpeed(5)?
+        NO! speed needs to change
+
+    Fan on ,speed 5, rotate off. Can we call setSpeed(6)?
+        NO! 6 is not a valid speed.
 
 
 What considerations when setting the speed?
-
+    preconditions: don't allow skipping a speed
+        speed parameter must be between 0-5
+        speed parameter of 2 should mean that it's not rotating
 
 
 
@@ -52,17 +73,24 @@ If a class has global invariants
 
 - those invariants should hold when an object is created
 
-- it is an unspoken precondition of each method that the global
+    (do they in Account?)
+
+
+- it is an unlisted precondition of each method that the global
     invariants hold
 
-- it is an unspoken postcondition of each method that the global
+
+- it is an unlisted postcondition of each method that the global
     invariants STILL hold
 
-    --> the function contract must imply this
 
 
---> write a globalsAssert method
+
+--> write a globalsAssert method for Account
     - where should we call it?
+
+    at the beginning of a method
+    at the end of a method
 
 
 ///////////////////////////////////////
@@ -73,40 +101,51 @@ Account class - what to add to...
 - enforce our preconditions?
 - check our postconditions?
 
+
+
+
+
 //////////////////////////////////////
 
 Best practices outside class
 
-Clock
-minutes, seconds, hours, AM/PM
 
-tick()
+    E.g., what if we had a Clock class?
+
+    minutes
+    hours
+    seconds
+    AM/PM
+
+    minutes/seconds - 0-59
+    hours: 1-12
+
+
+
+    tick() - go to next second
+
 
 
 Highly recommend:
-- write global invariants for any class with fields/properties
-- think about whether any parameters would violate global invariants
-    --> and if so, don't allow them!
-- consider the global invariants as you write the methods
+- write global invariants
+    - considerations for method parameters?
+        require parameters be so that they don't violate global
+        invariants
+
+    - considerations for method code?
+        guides the code so global invariants aren't violated
 
 
-- don't need to use JML - but write your invariants/specifications
-    in a clear, unambiguous way
 
-- write (unambiguous) preconditions and postconditions
-    for all methods
-
-- throw exceptions in a method where your preconditions aren't met
+- write preconditions and postconditions for all methods
+    - throw exceptions if your preconditions aren't met
 
 
 
 Next level:
-- add asserts at the end of methods that modify fields/properties
-    to make sure your global invariants aren't violated
+- add asserts that global invariants still true at method end
 
-- add asserts at the end of methods that are destined for a
-    reusable library to make sure you are fulfilling postconditions
-    (use as a development tool)
+- add asserts for postconditions
 
 
 --> be careful with documentation
@@ -117,13 +156,14 @@ Next level:
 Content of CIS 575.
 
 
-If you want to prove correctness of an algorithm or function, need:
+To prove correctness of a function:
 
    - function contract (preconditions and postconditions)
    - loop invariant for any loops
-        - loop invariant should describe progress loop has made so far
-        - should bound the loop counter
-        - should describe measure of work (for termination)
+        - describe progress loop has made so far
+        - bound the loop counter
+        - describe measure of work (for termination)
+
 
 The process of proving correctness of a non-Logika algorithm
 or function is EXACTLY the same approach we used in Logika.
@@ -131,7 +171,12 @@ or function is EXACTLY the same approach we used in Logika.
 
 --> What approach is that?
 
+    prove loop invariants hold before loop begins
 
+    prove loop invariants still hold at the end of each iteration
+
+    use the invariants and !(loop condition) to
+        prove the postconditions
 
 
 /////////////////////////////////////
@@ -141,7 +186,7 @@ Termination - whether a program will finish on all inputs
 
 Partial Correctness:
     if the precondition is satisfied
-    we guarantee the postcondition as long as the program terminates
+    we guarantee the postcondition if the program terminates
 
 
 Total Correctness:
@@ -157,9 +202,11 @@ We need to show termination to achieve total correctness
 Termination with a loop.
     - create measure of how much work is left
         (i.e., how many iterations are left)
+
     - show that the measure DECREASES with each iteration
     - show that if there is no more work to do, then the loop
         has finished
+
     - see example
 
 
@@ -183,6 +230,30 @@ Halting problem - given a computer program and a set of inputs
     program will halt for the inputs?
 
 
+Suppose, for the sake of contradiction, that I CAN write
+a program that can determine if another program terminates.
+
+Assume we have this function:
+
+    def Halt(Function, Input):
+        if (Function(Input) halts): return true
+        else return false
+
+We write:
+
+    def DoOpposite(Function):
+        if (Halt(Function, Function)) loop forever
+        else exit
+
+Consider DoOpposite(DoOpposite):
+    Case 1: loops forever. Means Halt(DoOpposite, DoOpposite)
+        return true. Thus DoOpposite(DoOpposite) halts.
+
+    Case 2: exits.  Means Halt(DoOpposite, DoOpposite) returns
+        false. Thus DoOpposite(DoOpposite) loops forever.
+
+ Both cases led to a contradiction.
+   So we can't write a Halt function.
 
 
 
@@ -196,6 +267,8 @@ OpenJML
 
 --> see online tutorial/documentation
 
+
+https://www.openjml.org/tutorial/
 
 /////////////////////////////////////
 

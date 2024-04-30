@@ -8,8 +8,8 @@ public class Termination {
         int count = 0;
 
         //measure of work?
-        //initially?
-        //after 1 iteration?
+        //initially? y
+        //after 1 iteration? y-1
 
         //@ loop_invariant sum == x*count;
         while (count < y) {
@@ -17,10 +17,19 @@ public class Termination {
             sum = sum + x;
             count = count + 1;
 
+            //measure of work: y-count
+
             //measure should decrease with each iteration
+                //it does! count gets bigger with each iteration
+                //so y-count gets smaller
 
             //when I have no work left,
+                //y - count = 0
+                //y = count
+
             // then my loop should be done
+                //it will! when y = count, the loop condition
+                //will be false
         }
 
         return sum;
@@ -34,6 +43,19 @@ public class Termination {
         /*
             How to show termination with recursive method?
 
+            Base case: we must show that multRec(x, 0) terminates
+                because 0 is the smallest allowable value of y.
+                Our if condition is true when y is 0, and we
+                immediately return. Thus multRec(x, 0) terminates.
+
+            Inductive step: we assume the inductive hypothesis --
+                that is, assume multRec(x, k) where k is some
+                fixed nonnegative integer. We must show that
+                multRec(x, k+1) terminates. k+1 is at least 1,
+                so we would go into the else and make
+                the recursive call multRec(x, k). By our
+                inductive hypothesis, multRec(x,k) terminates
+                and so we know we will return from the else.
         */
 
         if (y == 0) {
@@ -51,7 +73,8 @@ public class Termination {
             throw new IllegalArgumentException("parameter should be positive");
         }
 
-        //cur = 52 -> ... ?
+        //cur = 52 -> 26 -> 13 -> 40 -> 20 -> 10 -> 5 -> 16
+            //8->4->2->1
 
         int cur = n;
         while (cur > 1) {
