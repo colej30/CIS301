@@ -5,5 +5,36 @@ Conclusion: p → ¬r
 
 Explain from your results why we know the argument is valid.
 
+want to show that every time ALL the premises are true
+then the conclusion is also true
+          *       *        *
+-------------------------------
+p q r | p → q | q → ¬r | p → ¬r
+-------------------------------
+T T T |   T       F       F
+T T F |   T       T       T       <----
+T F T |   F       T       F
+T F F |   F       T       T
+F T T |   T       F       T
+F T F |   T       T       T       <-----
+F F T |   T       T       T       <-----
+F F F |   T       T       T       <-----
+--------------------------------
+
+THe argument is valid because every truth assignment that makes
+all the premises true (the ones marked with <---) also makes
+the conclusion true.
+
 
 (How do we show an argument is *invalid*?)
+
+Just need ONE truth assignment where all the premises are true
+but the conclusion is false
+
+//////////////////
+Satisfiability: a statement is satisfiable if I can find ONE
+truth assignment that makes it evaluate to true
+
+
+Not satisfiable: need FULL truth table to show every truth
+assignment makes it false (would be a contradictory statement)

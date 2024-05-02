@@ -7,3 +7,6 @@ Draw a circuit for the following propositional logic statement:
 Draw a parse tree for the following propositional logic statement:
 
 p V q ^ r → ¬p
+
+
+(see the files circuit.png and parse.png)

@@ -9,8 +9,13 @@
 (The exam will only ask for specifications, not asserts/tests)
 
 /*@
-
-
+    requires arr != null;
+    requires pos >= 0 && pos < arr.length;
+    ensures (\forall int k; 0 <= k && k < pos; arr[k] == \old(arr[k]));
+    ensures (\forall int k; k >= pos && k < arr.length;
+            \old(arr[k]) < 0 ==> arr[k] == \old(arr[k]) + 1);
+    ensures (\forall int k; k >= pos && k < arr.length;
+            \old(arr[k]) >= 0 ==> arr[k] == \old(arr[k]));
 */
 public static void addToNeg(int pos, int[] arr) {
     for (int i = pos; i < arr.length; i++) {

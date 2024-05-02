@@ -5,7 +5,7 @@ import org.sireum.logika._
 
 //At each "SHOW" heading, list the claim that we MUST prove
 //for the program to be validated in Logika's manual mode
-    //(you don't have to prove it - just list what we want to prove)
+//(you don't have to prove it - just list what we want to prove)
 
 def diff(big: Z, small: Z): Z = {
     l"""{
@@ -14,16 +14,18 @@ def diff(big: Z, small: Z): Z = {
     }"""
 
     //PREMISES:
-
+    big >= small (precondition)
 
     var count: Z = 0
     var cur: Z = big
 
     //PREMISES:
-
+    big >= small (precondition)
+    count == 0
+    cur == big
 
     //SHOW:
-
+    count == (big-cur)      (loop invariant)
 
     while (cur != small) {
         l"""{
@@ -33,20 +35,27 @@ def diff(big: Z, small: Z): Z = {
         }"""
 
         //PREMISES:
+        big >= small (precondition)
+        cur != small    (loop condition)
+        count == (big-cur) (invariant)
 
 
         cur = cur - 1
+
         count = count + 1
 
         //SHOW:
-
+        count == (big-cur) (invariant)
     }
 
     //PREMISES:
+    big >= small (precondition)
+    count == (big-cur) (invariant)
+    !(cur != small) (loop condition is false)
 
 
     //SHOW:
-
+    count == big-small
 
     return count
 }
@@ -56,17 +65,22 @@ def diff(big: Z, small: Z): Z = {
 var one: Z = 10
 
 //PREMISES:
+one == 10
 
 
 //SHOW:
+one+4 >= one
 
 
 var answer: Z = diff(one+4, one)
 
 //PREMISES:
+answer == (one+4)-one   (postcondition)
+one == 10
 
 
 //SHOW:
+answer == 4
 
 
 assert(answer == 4)
